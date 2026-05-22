@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<!-- ============================================================
+     ORGANOGRAMA - ESTRUTURA ORGANIZACIONAL DA BORAÊ
+     ============================================================
+     Página com accordion expandível mostrando:
+     - 5 Diretores executivos (P&D, TI, Eventos, RH, Marketing)
+     - 6 Departamentos completos com 50+ membros
+     - Seções de Missão, Visão e Valores
+     - Assistente BORUS com informações
+     - Design moderno com cards glassmorphism
+     
+     ✅ MUDANÇAS RECENTES:
+     - Logo substituída: logo-borae.jpg → nova-logo-borae.png
+     - Tamanho logo header: aumentado para 240px (height: 240px)
+     - Ícones: Convertidos para SVG inline (não usa Font Awesome)
+     - Navegação: Linha Desktop (8 links) + Mobile Menu (hamburger)
+     ============================================================ -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organograma – BORAÊ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/global-styles.css">
+</head>
+<body class="min-h-screen bg-[#f4f4f8] font-sans text-slate-900">
+
+    <!-- ============================================================
+         HEADER
+    ============================================================ -->
+    <!-- ============================================================
+        HEADER / NAVEGAÇÃO
+        ============================================================
+        - Logo grande (240px) com fallback text
+        - Desktop nav: 8 links com ícones SVG inline (Início, Organograma, Dashboard, etc)
+        - Mobile nav: Menu hamburger que abre/fecha com toggleMenu()
+        - ✅ NOVA LOGO: nova-logo-borae.png (substituída de logo-borae.jpg)
+        - ✅ TAMANHO: 240px de altura para destaque
+        ============================================================ -->
+    <header class="site-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo Header -->
+                <a href="../index.html" class="flex items-center">
+                    <!-- ✅ NOVA LOGO: nova-logo-borae.png | TAMANHO: 240px -->
+                    <!-- Substituída de logo-borae.jpg → nova-logo-borae.png -->
+                    <!-- onerror fallback: Se imagem quebrar, mostra BORAÊ em texto -->
+                    <img src="../../public/nova-logo-borae.png" alt="BORAÊ Logo" style="height: 150px; width: auto;"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                    <span style="display:none" class="text-xl font-bold text-stone-800 tracking-tight">BORAÊ</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <!-- 8 Links com ícones SVG inline (não usa Font Awesome) -->
+                <!-- ✅ ÍCONES: Todos convertidos para SVG (4x4 viewBox com stroke) -->
+                <!-- Ordem: Início → Organograma (ativo) → Dashboard → Eventos → Tarefas → Sobre → Contato -->
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <a href="../index.html"          class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>Início</a>
+                    <a href="organograma.html"       class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white bg-white/15 transition-all"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>Organograma</a>
+                    <a href="../dashboard/dashboard.html" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 6.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v13.5c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V6.875ZM16.5 6c0-.621.504-1.125 1.125-1.125h2.25C20.496 4.875 21 5.379 21 6v13.875c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V6Z"/></svg>Dashboard</a>
+                    <a href="../eventos/eventos.html"     class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>Eventos</a>
+                    <a href="../tarefas/tarefas.html"     class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/></svg>Tarefas</a>
+                    <a href="../sobre/sobre.html"         class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/></svg>Sobre</a>
+                    <a href="../contato/contato.html"     class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>Contato</a>
+                </nav>
+
+                <!-- Mobile Menu Toggle -->
+                <!-- Hamburger button que abre/fecha mobile menu -->
+                <!-- Função: toggleMenu() troca classes e ícones -->
+                <button class="lg:hidden p-2 text-white/85 hover:text-white hover:bg-white/10 rounded-md transition-all" onclick="toggleMenu()">
+                    <i class="fas fa-bars w-6 h-6" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <!-- Menu responsivo que aparece em telas pequenas (<1024px) -->
+    <!-- Ativa/desativa com classe .open (display: none / block) -->
+    <!-- Todos os 8 links de navegação com ícones SVG + onclick="toggleMenu()" fecha menu -->
+    <div id="mobile-menu" class="lg:hidden bg-white border-b border-slate-200 fixed w-full z-40 top-16">
+        <div class="px-4 pt-2 pb-4 space-y-1">
+            <a href="../app/index.html"          class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>Início</a>
+            <a href="organograma.html"       class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-white bg-white/15" onclick="toggleMenu()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>Organograma</a>
+            <a href="../app/dashboard/dashboard.html" class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 6.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v13.5c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V6.875ZM16.5 6c0-.621.504-1.125 1.125-1.125h2.25C20.496 4.875 21 5.379 21 6v13.875c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V6Z"/></svg>Dashboard</a>
+            <a href="../app/eventos/eventos.html"     class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>Eventos</a>
+            <a href="../app/tarefas/tarefas.html"     class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/></svg>Tarefas</a>
+            <a href="../app/sobre/sobre.html"         class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/></svg>Sobre</a>
+            <a href="../app/contato/contato.html"     class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>Contato</a>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <div class="relative bg-slate-900 text-white py-20 sm:py-32 overflow-hidden">
+        <!-- Fundo com gradiente visual -->
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950"></div>
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
+            <div class="absolute -bottom-32 left-32 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animation-pulse"></div>
+            <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900/80"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-block mb-6 px-4 py-1 text-sm uppercase tracking-wider text-blue-300 border border-blue-400/30 rounded-full">
+                Nossa Equipe
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Conheça Nossa <br class="hidden sm:block" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                    Estrutura Organizacional
+                </span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Nossa equipe dedicada trabalha para conectar a juventude com arte, música e conhecimento, criando experiências que inspiram e transformam.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="../app/contato/contato.html" class="inline-flex items-center justify-center px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition">
+                    Fale Conosco
+                </a>
+                <a href="#directors-section" class="inline-flex items-center justify-center px-8 py-3 border border-slate-600 text-white hover:bg-slate-800 font-semibold rounded-md transition bg-transparent">
+                    Ver Equipe
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         MAIN CONTENT
+    ============================================================ -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+
+        <!-- Search -->
+        <div class="mb-12">
+            <div class="text-center mb-8">
+                <div class="inline-block mb-4 px-4 py-1 text-sm uppercase tracking-wider text-slate-600 border border-slate-300 rounded-full bg-slate-50">
+                    Buscar
+                </div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Encontre Membros e Departamentos</h2>
+            </div>
+            <div class="max-w-2xl mx-auto">
+                <div class="relative">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                    <input type="text" id="searchInput" placeholder="Digite um nome ou departamento..."
+                        class="w-full pl-12 pr-4 py-3 rounded-xl border border-slate-200 bg-white hover:border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition">
+                </div>
+            </div>
+        </div>
+
+        <!-- Directors -->
+        <section id="directors-section" class="animate-slide-up mb-20">
+            <div class="text-center mb-12">
+                <div class="inline-block mb-4 px-4 py-1 text-sm uppercase tracking-wider text-blue-300 border border-blue-400/30 rounded-full bg-blue-500/5">
+                    Liderança Executiva
+                </div>
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Direção</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Conheça os líderes que guiam nossa organização</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto" id="directorsGrid"></div>
+        </section>
+
+        <!-- Departments -->
+        <section>
+            <div class="text-center mb-12">
+                <div class="inline-block mb-4 px-4 py-1 text-sm uppercase tracking-wider text-slate-500 border border-slate-300 rounded-full bg-slate-50">
+                    Equipes Especializadas
+                </div>
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Departamentos</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Conheça nossa equipe especializada e dedicada</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto" id="deptsGrid"></div>
+        </section>
+
+        <!-- Values -->
+        <div class="mt-32 mb-24">
+            <div class="text-center mb-12">
+                <div class="inline-block mb-4 px-4 py-1 text-sm uppercase tracking-wider text-amber-600 border border-amber-300 rounded-full bg-amber-50">
+                    Nossa Essência
+                </div>
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Missão, Visão e Valores</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-bullseye text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Nossa Missão</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Promover cultura, informação e entretenimento para o maior número possível de jovens de forma educativa, autêntica e impactante.
+                    </p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-purple-200 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-star text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Nossa Visão</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Trazer para os jovens que tenham pouco interesse, acesso ou oportunidade, variados tipos de entretenimento e educação cultural.
+                    </p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-pink-200 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-heart text-2xl text-pink-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Nossos Valores</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Paixão pela cultura, valorização da diversidade, aprendizado através da experiência, transparência e reconhecimento do potencial humano.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Connect -->
+        <div class="bg-slate-900 rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden mb-24">
+            <div class="absolute inset-0 opacity-20">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
+                <div class="absolute -bottom-16 left-16 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
+            </div>
+            <div class="relative z-10 max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6">Conecte-se Conosco</h2>
+                <p class="text-slate-300 mb-8 text-lg">Acompanhe nossos bastidores, novidades e próximos eventos em nossas redes sociais.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://www.instagram.com/_boraee/" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all">
+                        <i class="fab fa-instagram mr-2"></i>Instagram
+                    </a>
+                    <a href="#" class="flex items-center px-6 py-3 bg-blue-600 rounded-full font-semibold hover:bg-blue-700 hover:shadow-lg hover:scale-105 transition-all">
+                        <i class="fab fa-facebook mr-2"></i>Facebook
+                    </a>
+                    <a href="#" class="flex items-center px-6 py-3 bg-slate-800 border border-slate-700 rounded-full font-semibold hover:bg-slate-700 hover:shadow-lg hover:scale-105 transition-all">
+                        <span class="mr-2 font-bold">Tk</span>TikTok
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BORUS Section -->
+        <div class="mt-24">
+            <div class="text-center mb-12">
+                <div class="inline-block mb-4 px-4 py-1 text-sm uppercase tracking-wider text-stone-600 border border-stone-300 rounded-full">
+                    Assistente Virtual
+                </div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Conheça o BORUS</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Nosso assistente virtual inteligente está sempre disponível para ajudar você.</p>
+            </div>
+            <div class="border border-slate-200 shadow-lg rounded-2xl overflow-hidden max-w-2xl mx-auto">
+                <div class="bg-gradient-to-r from-stone-700 to-stone-900 p-6 text-white">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
+                            <i class="fas fa-robot text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">BORUS</h3>
+                            <p class="text-stone-300 text-sm">Seu assistente virtual 24/7</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 bg-white">
+                    <p class="text-slate-600 mb-4">O <strong>BORUS</strong> (Bot for Organizational Research &amp; Unified Support) pode responder perguntas sobre:</p>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <!-- FIX: fa-sparkles não existe no FA6 Free → substituído por fa-wand-magic-sparkles / fa-star -->
+                        <li class="flex items-center gap-2"><i class="fas fa-star text-stone-400 w-4"></i>Informações sobre a empresa</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-users text-stone-400 w-4"></i>Colaboradores e departamentos</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-calendar text-stone-400 w-4"></i>Eventos realizados</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-bolt text-stone-400 w-4"></i>E muito mais!</li>
+                    </ul>
+                    <p class="text-slate-500 text-sm mt-4 flex items-center gap-2">
+                        <i class="fas fa-arrow-right w-4"></i>
+                        Clique no ícone no canto inferior direito para conversar
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+        <!-- FOOTER -->
+        <!-- Logo reduzida + Copyright + Links para Sobre/Contato -->
+        <!-- ✅ NOVA LOGO: nova-logo-borae.png (footer, 36px de altura) -->
+        <!-- Substituída de logo-borae.jpg → nova-logo-borae.png -->
+        <!-- Classe: h-9 = 2.25rem (36px) com grayscale filter -->
+        <!-- onerror: se quebrar, esconde a imagem -->
+    <footer class="py-12" style="background: linear-gradient(to top, #2209a0 0%, #4d19e6 100%)">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="../../public/nova-logo-borae.png" alt="BORAÊ Logo"
+                    style="height: 100px; width: auto;"
+                     onerror="this.style.display='none';" />
+                <!-- Copyright -->
+                <span class="text-slate-500 text-sm">© 2025 BORAÊ. Todos os direitos reservados.</span>
+            </div>
+            <!-- Links -->
+            <div class="flex space-x-8">
+                <a href="../app/sobre/sobre.html"   class="text-slate-500 hover:text-blue-600 text-sm font-medium transition-colors">Sobre</a>
+                <a href="../app/contato/contato.html" class="text-slate-500 hover:text-blue-600 text-sm font-medium transition-colors">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         JAVASCRIPT - FUNCIONALIDADES DINÂMICAS
+         ============================================================
+         - toggleMenu(): Abre/fecha mobile menu com classe .open
+         - toggleDept(id): Abre/fecha accordion de departamento
+         - Renderização dinâmica de Diretores e Departamentos (50+ membros)
+         - Busca em tempo real: filtra por nome ou departamento
+         - searchInput: listener que filtra cards enquanto digita
+         ============================================================ -->
+    <script>
+        // ── Mobile menu ─────────────────────────────────────────
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu')
+            const icon = document.getElementById('menu-icon')
+            const open = menu.classList.toggle('open')
+            icon.classList.toggle('fa-bars', !open)
+            icon.classList.toggle('fa-times', open)
+        }
+
+        // ── Accordion ────────────────────────────────────────────
+        function toggleDept(id) {
+            const content  = document.getElementById(`content-${id}`)
+            const chevron  = document.getElementById(`chevron-${id}`)
+            const isOpen   = content.classList.contains('active')
+
+            // Fecha todos
+            document.querySelectorAll('.dept-content').forEach(c => c.classList.remove('active'))
+            document.querySelectorAll('.chevron-icon').forEach(c => c.classList.remove('rotate'))
+
+            // Abre o clicado só se estava fechado
+            if (!isOpen) {
+                content.classList.add('active')
+                chevron.classList.add('rotate')
+            }
+        }
+
+        // ── Data ─────────────────────────────────────────────────
+        // FIX: caminhos de imagem corrigidos para ../../public/
+        const IMG = (f) => `../../public/${f}`
+        const AVATAR = (name) => `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=e2e8f0&color=64748b&size=80`
+
+        const orgData = {
+            directors: [
+                { name: "Giulia Borges Santos Ferro",   position: "Diretora de P&D",    image: "giulia.jpg" },
+                { name: "Guilherme Henrique Monteiro",  position: "Diretor de TI",       image: "guilherme.jpg" },
+                { name: "Gustavo Alves Sartorelli",     position: "Diretor de Eventos",  image: "gustavo.jpg" },
+                { name: "Layne Rodrigues Silva",        position: "Diretora de RH",      image: "layne.jpg" },
+                { name: "Maria Clara Kirchhof",         position: "Diretora de Marketing", image: "maria-clara.jpg" }
+            ],
+            departments: [
+                {
+                    id: "pd", name: "P&D", color: "from-blue-400 to-blue-500", icon: "🔬",
+                    members: [
+                        { name: "Giulia Borges Santos Ferro",  role: "Diretora",               function: "Pesquisa e Desenvolvimento",    image: "giulia.jpg" },
+                        { name: "Thifany Nicoly Gama",         role: "Gestora",                function: "Coordenação geral do setor",    image: "thifany.jpg" },
+                        { name: "Ana Clara Pereira da Silva",  role: "Coordenadora",           function: "Cronogramas e estratégias",     image: "ana.jpg" },
+                        { name: "Yuri Nascimento",             role: "Coordenador Ops",        function: "Logística e suporte estratégico", image: "yuri.jpg" },
+                        { name: "Mariana Gonçalves",           role: "Coordenadora Projetos",  function: "Supervisão de estudos",         image: "mariana.jpg" },
+                        { name: "Willian Marques Barbosa",     role: "Analista",               function: "Compilação de dados e relatórios", image: "willian-marques.jpg" },
+                        { name: "Iago Lima Flores",            role: "Pesquisador",            function: "Coletas e levantamentos externos", image: "iago-lima.jpg" },
+                        { name: "Isabelly Alves",              role: "Membro",                 function: "Apoio às pesquisas",            image: "isabelly-a.jpg" },
+                        { name: "Isabelly Pinheiro",           role: "Membro",                 function: "Apoio às pesquisas",            image: "isabelly-p.jpg" }
+                    ]
+                },
+                {
+                    id: "marketing", name: "Marketing", color: "from-gray-400 to-gray-500", icon: "📢",
+                    members: [
+                        { name: "Maria Clara Kirchhof",   role: "Diretora",  function: "Gestão de Marketing",       image: "maria-clara.jpg" },
+                        { name: "Clarice de Paula",        role: "Branding",  function: "Identidade visual da marca", image: "clarice.jpg" },
+                        { name: "Giovanna dos Santos",     role: "Conteúdo",  function: "Criação de vídeos e fotos", image: "giovanna-santos.jpg" },
+                        { name: "Maria Eduarda Martins",   role: "Conteúdo",  function: "Criação de vídeos e fotos", image: "maria-eduarda-martins.jpg" },
+                        { name: "Maria Vitoria Rocha",     role: "Branding",  function: "Identidade visual da marca", image: "maria-vitoria.jpg" },
+                        { name: "Giovanna Camilo",         role: "Membro",    function: "Apoio às ações de marketing", image: "giovanna-camilo.jpg" }
+                    ]
+                },
+                {
+                    id: "ti", name: "TI", color: "from-slate-400 to-slate-500", icon: "💻",
+                    members: [
+                        { name: "Guilherme Henrique Monteiro", role: "Diretor",     function: "Gestão de Tecnologia",          image: "guilherme.jpg" },
+                        { name: "Filipe Ferreira de Araújo",   role: "Dev",         function: "Elaboração do site e bugs",     image: "filipe.jpg" },
+                        { name: "Diego Silva de Oliveira",     role: "Inovação",    function: "Soluções e ferramentas",        image: "diego.jpg" },
+                        { name: "Luan Alves da Silva",         role: "Segurança",   function: "Cibersegurança",                image: "luan.jpg" },
+                        { name: "Pedro Henrique Dias",         role: "Performance", function: "Validação de produção",         image: "pedro.jpg" },
+                        { name: "José Elias Gomes",            role: "Membro",      function: "Suporte técnico",               image: "jose-elias.jpg" }
+                    ]
+                },
+                {
+                    id: "rh", name: "RH", color: "from-gray-500 to-gray-600", icon: "👥",
+                    members: [
+                        { name: "Layne Rodrigues Silva",    role: "Diretora", function: "Gestão de Recursos Humanos",    image: "layne.jpg" },
+                        { name: "Mariana Favorin Cruz",     role: "Cultura",  function: "Ambiente de trabalho",          image: "mariana-favorin.jpg" },
+                        { name: "Maria Eduarda Barbosa",    role: "Docs",     function: "Revisão de Diário de Bordo",   image: "maria-eduarda-barbosa.jpg" },
+                        { name: "Gustavo Bispo Viana",      role: "Docs",     function: "Revisão de Diário de Bordo",   image: "gustavo-bispo.jpg" },
+                        { name: "Willyan Rodrigues",        role: "Cultura",  function: "Diagnósticos motivacionais",   image: "willyan.jpg" },
+                        { name: "Maria Julia Goes",         role: "Membro",   function: "Apoio ao setor de RH",         image: "maria-julia.jpg" },
+                        { name: "Eliane Araújo Silva",      role: "Membro",   function: "Apoio ao setor de RH",         image: "eliane.jpg" }
+                    ]
+                },
+                {
+                    // FIX: departamento adicionado — estava faltando
+                    id: "desenvolvimento", name: "Desenvolvimento", color: "from-emerald-400 to-emerald-600", icon: "🚀",
+                    members: [
+                        { name: "Cléo Christine Silva",       role: "Membro",    function: "Expansão e parcerias",          image: "cleo.jpg" },
+                        { name: "Fabio Andrade Irias",        role: "Membro",    function: "Desenvolvimento estratégico",   image: "fabio.jpg" },
+                        { name: "Luana da Silva",             role: "Membro",    function: "Desenvolvimento de projetos",   image: "luana.jpg" },
+                        { name: "Lucas Pereira Santos",       role: "Membro",    function: "Desenvolvimento de projetos",   image: "lucas-pereira.jpg" },
+                        { name: "Maria Eduarda de Oliveira",  role: "Membro",    function: "Apoio estratégico",             image: "maria-eduarda.jpg" },
+                        { name: "Pablo Ackillys",             role: "Membro",    function: "Desenvolvimento de projetos",   image: "pablo.jpg" },
+                        { name: "Rafaela Matos",              role: "Membro",    function: "Apoio ao desenvolvimento",      image: "rafaela.jpg" },
+                        { name: "Rodrigo Souto",              role: "Membro",    function: "Desenvolvimento estratégico",   image: "rodrigo.jpg" },
+                        { name: "Sabrina Ramos Alves",        role: "Membro",    function: "Apoio ao desenvolvimento",      image: "sabrina.jpg" }
+                    ]
+                },
+                {
+                    // FIX: departamento adicionado — estava faltando
+                    id: "eventos", name: "Planejamento/Eventos", color: "from-amber-400 to-orange-500", icon: "🎉",
+                    members: [
+                        { name: "Gustavo Alves Sartorelli",       role: "Diretor",     function: "Gestão de Eventos",            image: "gustavo.jpg" },
+                        { name: "Gabrielle Alves de Oliveira",    role: "Coordenadora",function: "Planejamento e execução",      image: "gabrielle.jpg" },
+                        { name: "Gabrielly Evangelista",          role: "Membro",      function: "Organização de eventos",       image: "gabrielly-evangelista.jpg" },
+                        { name: "Icaro Moreira Jorge",            role: "Membro",      function: "Logística de eventos",         image: "icaro.jpg" },
+                        { name: "Luisa Holanda Alves",            role: "Membro",      function: "Planejamento de eventos",      image: "luisa.jpg" },
+                        { name: "Richard Machado",                role: "Membro",      function: "Apoio operacional",            image: "richard.jpg" },
+                        { name: "Sofia Alves Sousa",              role: "Membro",      function: "Produção de eventos",          image: "sofia.jpg" },
+                        { name: "Vinicius Neri Brandão",          role: "Membro",      function: "Apoio aos eventos",            image: "vinicius.jpg" },
+                        { name: "Karoline Xavier",                role: "Membro",      function: "Comunicação em eventos",       image: "karoline.jpg" }
+                    ]
+                }
+            ]
+        }
+
+        // ── Render helpers ───────────────────────────────────────
+        function imgTag(filename, name, cls = '') {
+            const src = IMG(filename)
+            const fallback = AVATAR(name)
+            return `<img src="${src}" alt="${name}" class="${cls}" onerror="this.src='${fallback}'">`
+        }
+
+        // ── Render Directors ─────────────────────────────────────
+        const directorsGrid = document.getElementById('directorsGrid')
+        orgData.directors.forEach(dir => {
+            directorsGrid.innerHTML += `
+                <div class="card-modern hover-lift p-6 text-center rounded-2xl">
+                    <div class="w-24 h-24 bg-slate-200 rounded-full mx-auto mb-4 overflow-hidden ring-4 ring-white shadow-lg">
+                        ${imgTag(dir.image, dir.name, 'member-avatar')}
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-sm">${dir.name}</h3>
+                    <p class="text-slate-500 text-xs mt-1">${dir.position}</p>
+                </div>`
+        })
+
+        // ── Render Departments ───────────────────────────────────
+        const deptsGrid = document.getElementById('deptsGrid')
+        let deptsHTML = ''
+
+        orgData.departments.forEach(dept => {
+            const membersHtml = dept.members.map(m => `
+                <div class="flex items-start space-x-3 p-3 bg-white rounded-xl border border-slate-100 shadow-sm">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex-shrink-0 overflow-hidden flex items-center justify-center text-xs font-bold text-slate-400">
+                        ${m.image
+                            ? imgTag(m.image, m.name, 'w-full h-full object-cover')
+                            : `<span>${m.name.charAt(0)}</span>`
+                        }
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold text-slate-800 member-name">${m.name}</div>
+                        <div class="text-[10px] text-blue-600 font-semibold uppercase">${m.role}</div>
+                        <div class="text-[11px] text-slate-500 leading-tight">${m.function}</div>
+                    </div>
+                </div>`).join('')
+
+            deptsHTML += `
+                <div class="card-modern rounded-2xl overflow-hidden dept-card hover:shadow-lg transition-all" data-name="${dept.name}">
+                    <button class="dept-header w-full p-6 cursor-pointer relative text-left" data-dept-id="${dept.id}" type="button">
+                        <div class="absolute inset-0 bg-gradient-to-br ${dept.color} opacity-5"></div>
+                        <div class="flex items-center justify-between relative z-10">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-14 h-14 rounded-xl bg-gradient-to-br ${dept.color} flex items-center justify-center text-2xl shadow-md flex-shrink-0">
+                                    ${dept.icon}
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-800">${dept.name}</h3>
+                                    <span class="text-xs text-slate-500">${dept.members.length} membros</span>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 chevron-icon text-lg" id="chevron-${dept.id}"></i>
+                        </div>
+                    </button>
+                    <div class="dept-content bg-slate-50/50 space-y-3" id="content-${dept.id}">
+                        ${membersHtml}
+                    </div>
+                </div>`
+        })
+
+        deptsGrid.innerHTML = deptsHTML
+
+        // Attach click listeners after rendering
+        document.querySelectorAll('.dept-header').forEach(header => {
+            header.addEventListener('click', function () {
+                toggleDept(this.getAttribute('data-dept-id'))
+            })
+        })
+
+        // ── Search ───────────────────────────────────────────────
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase()
+            document.querySelectorAll('.dept-card').forEach(card => {
+                const deptName    = card.getAttribute('data-name').toLowerCase()
+                const memberNames = Array.from(card.querySelectorAll('.member-name')).map(el => el.textContent.toLowerCase())
+                const match       = deptName.includes(term) || memberNames.some(n => n.includes(term))
+                card.style.display = match ? 'block' : 'none'
+
+                // Se há busca ativa, auto-abre o card que tem resultado
+                if (term && match) {
+                    const deptId  = card.querySelector('.dept-header')?.getAttribute('data-dept-id')
+                    const content = document.getElementById(`content-${deptId}`)
+                    const chevron = document.getElementById(`chevron-${deptId}`)
+                    if (content)  content.classList.add('active')
+                    if (chevron)  chevron.classList.add('rotate')
+                } else if (!term) {
+                    // Fecha tudo ao limpar busca
+                    const deptId  = card.querySelector('.dept-header')?.getAttribute('data-dept-id')
+                    const content = document.getElementById(`content-${deptId}`)
+                    const chevron = document.getElementById(`chevron-${deptId}`)
+                    if (content)  content.classList.remove('active')
+                    if (chevron)  chevron.classList.remove('rotate')
+                }
+            })
+        })
+    </script>
+</body>
+</html>

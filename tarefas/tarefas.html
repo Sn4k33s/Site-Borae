@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefas por Setor - BORAÊ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: linear-gradient(to bottom, #3a12c0 0%, #4d19e6 100%);
+      box-shadow: 0 2px 16px rgba(77,25,230,.35);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-50 to-slate-100">
+
+    <!-- ============================================================
+         ✅ PÁGINA DE TAREFAS - BORAÊ
+         ============================================================
+         Dashboard de tarefas e projetos por setor/departamento
+         
+         Mudanças principais:
+         - Logo: logo-borae.jpg → nova-logo-borae.png ✅
+         - Tamanho logo: 240px (alterado de h-10 sm:h-12) ✅
+         - Navegação padronizada: 8 links com Font Awesome icons
+         - Layout: Tarefas organizadas por setor
+         - Recursos: Modal de edição, status tracking
+         
+         Estrutura:
+         1. Header com logo e navegação
+         2. Título e filtros da página
+         3. Grade de tarefas (responsiva: 1→2 colunas)
+         4. Modal para adicionar/editar tarefas
+         5. Footer
+         ============================================================ -->
+    <!-- Header -->
+    <header class="site-header">
+        <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+            <div class="flex justify-between items-center h-14 sm:h-16">
+                <div class="flex items-center min-w-0">
+                    <img src="../../public/nova-logo-borae.png" alt="BORAÊ Logo" style="height: 150px; width: auto;">
+                </div>
+
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <a href="../index.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-home w-4 h-4 mr-2"></i>Início
+                    </a>
+                    <a href="../organograma/organograma.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-users w-4 h-4 mr-2"></i>Organograma
+                    </a>
+                    <a href="../dashboard/dashboard.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-chart-line w-4 h-4 mr-2"></i>Dashboard
+                    </a>
+                    <a href="../eventos/eventos.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-calendar w-4 h-4 mr-2"></i>Eventos
+                    </a>
+                    <a href="../tarefas/tarefas.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white bg-white/15 transition-all">
+                        <i class="fas fa-check-square w-4 h-4 mr-2"></i>Tarefas
+                    </a>
+                    <a href="../sobre/sobre.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-info w-4 h-4 mr-2"></i>Sobre
+                    </a>
+                    <a href="../contato/contato.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-envelope w-4 h-4 mr-2"></i>Contato
+                    </a>
+                </nav>
+
+                <button class="lg:hidden p-2 text-white/85 hover:text-white hover:bg-white/10 rounded-md transition-all" onclick="toggleMenu()">
+                    <i class="fas fa-bars w-6 h-6" id="menu-icon"></i>
+                </button>
+            </div>
+
+            <!-- ============================================================
+                 📱 MOBILE NAVIGATION MENU
+                 ============================================================
+                 Mobile-only navigation menu
+                 - Hidden on desktop (lg:hidden)
+                 - Nested inside header container
+                 - Toggles with hamburger button (toggleMenu())
+                 ============================================================ -->
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="lg:hidden bg-white border-t border-slate-200 hidden">
+                <div class="px-4 pt-2 pb-4 space-y-1">
+                    <a href="../index.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                        <i class="fas fa-home w-4 h-4 mr-2"></i>Início
+                    </a>
+                    <a href="../organograma/organograma.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                        <i class="fas fa-users w-4 h-4 mr-2"></i>Organograma
+                    </a>
+                    <a href="../dashboard/dashboard.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                        <i class="fas fa-chart-line w-4 h-4 mr-2"></i>Dashboard
+                    </a>
+                    <a href="../eventos/eventos.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                        <i class="fas fa-calendar w-4 h-4 mr-2"></i>Eventos
+                    </a>
+                    <a href="../tarefas/tarefas.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-white bg-white/15" onclick="toggleMenu()">
+                        <i class="fas fa-check-square w-4 h-4 mr-2"></i>Tarefas
+                    </a>
+                    <a href="../sobre/sobre.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                        <i class="fas fa-info w-4 h-4 mr-2"></i>Sobre
+                    </a>
+                    <a href="../contato/contato.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                        <i class="fas fa-envelope w-4 h-4 mr-2"></i>Contato
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-3 sm:px-4 lg:px-6 py-6 sm:py-8 lg:py-12">
+        <!-- Header da Página -->
+        <div class="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:items-center justify-between mb-8 sm:mb-12">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                <a href="../index.html">
+                    <button class="glass-effect border-white/30 hover:bg-white/20 bg-transparent text-slate-600 px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-all">
+                        <i class="fas fa-arrow-left h-3 w-3 mr-1"></i>Voltar
+                    </button>
+                </a>
+                <div>
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 flex items-center">
+                        <i class="fas fa-check-square h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mr-2 sm:mr-3 lg:mr-4 text-gray-600"></i>
+                        Tarefas por Setor
+                    </h1>
+                    <p class="text-gray-600 mt-1 sm:mt-2 text-sm sm:text-base lg:text-lg">
+                        Acompanhe as atividades e progresso de cada departamento
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Setores em Andamento -->
+        <div id="setores-progresso" class="mb-12 sm:mb-16">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 sm:mb-8">Setores em Andamento</h2>
+            <div id="progress-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"></div>
+        </div>
+
+        <!-- Setores com Atraso -->
+        <div id="setores-atraso" class="mb-12 sm:mb-16 hidden">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 sm:mb-8">
+                ⚠️ Setores que Precisam Iniciar
+            </h2>
+            <div id="delayed-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"></div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="detailsModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-dialog" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-slate-900" id="modal-title"></h2>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <i class="fas fa-times w-6 h-6"></i>
+                </button>
+            </div>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-6 sm:py-8 mt-12 sm:mt-16" style="background: linear-gradient(to top, #2209a0 0%, #4d19e6 100%)">
+        <div class="max-w-6xl mx-auto px-3 sm:px-4 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+                <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0">
+                    <img src="../../public/nova-logo-borae.png" alt="BORAÊ Logo" style="height: 100px; width: auto;">
+                    <span class="text-xs sm:text-sm text-center" style="color: rgba(255,255,255,0.7)">
+                        © 2025 BORAÊ. Todos os direitos reservados.
+                    </span>
+                </div>
+                <div class="flex space-x-4 sm:space-x-6">
+                    <a href="../sobre/sobre.html" class="text-xs sm:text-sm transition-colors" style="color: rgba(255,255,255,0.7)" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
+                        Sobre
+                    </a>
+                    <a href="../contato/contato.html" class="text-xs sm:text-sm transition-colors" style="color: rgba(255,255,255,0.7)" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
+                        Contato
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const setoresComTarefas = [
+            {
+                id: "rh",
+                nome: "Recursos Humanos",
+                icon: "👥",
+                color: "from-pink-400 to-pink-500",
+                progresso: 0,
+                tarefas: [
+                    { nome: "Relatório de resultados nos 3 primeiros meses trabalhados", concluida: false },
+                    { nome: "Descrição de funções", concluida: false },
+                    { nome: "Preparar dinâmicas que fortaleçam o Clima Organizacional", concluida: false },
+                ]
+            },
+            {
+                id: "marketing",
+                nome: "Marketing",
+                icon: "📢",
+                color: "from-orange-400 to-orange-500",
+                progresso: 75,
+                tarefas: [
+                    { nome: "Relatório de resultados nos 3 primeiros meses trabalhados", concluida: true },
+                    { nome: "Encaminhar as métricas da rede social da Boraê", concluida: true },
+                    { nome: "Procurar e enviar fotos dos eventos já realizados que serão recém adicionados", concluida: true },
+                ]
+            },
+            {
+                id: "ti",
+                nome: "Tecnologia da Informação",
+                icon: "💻",
+                color: "from-cyan-400 to-cyan-500",
+                progresso: 90,
+                tarefas: [
+                    { nome: "Relatório de resultados nos 3 primeiros meses trabalhados", concluida: true },
+                    { nome: "Atualização do site", concluida: true },
+                    { nome: "Dividir funções", concluida: false },
+                ]
+            },
+            {
+                id: "pesquisa",
+                nome: "Pesquisa e Planejamento",
+                icon: "🔍",
+                color: "from-blue-400 to-blue-500",
+                progresso: 85,
+                tarefas: [
+                    { nome: "Relatório de resultados nos 3 primeiros meses trabalhados", concluida: true },
+                    { nome: "Pesquisar e, com aval, Planejar próximas visitas externas", concluida: true },
+                    { nome: "Pesquisar e, com aval, Planejar próximos eventos", concluida: true },
+                ]
+            },
+            {
+                id: "desenvolvimento",
+                nome: "Desenvolvimento",
+                icon: "🚀",
+                color: "from-indigo-400 to-indigo-500",
+                progresso: 0,
+                tarefas: [
+                    { nome: "Relatório de resultados nos 3 primeiros meses trabalhados", concluida: false },
+                    { nome: "Analisar a Viabilidade do que foi pesquisado pela equipe de Pesquisa e aprovar caso seja possível", concluida: false },
+                    { nome: "Se for viável, acompanhar, a partir da aprovação, para que seja desenvolvido da forma mais eficaz possível", concluida: false },
+                ]
+            }
+        ];
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+
+        function renderizarSetores() {
+            const setoresEmProgresso = setoresComTarefas.filter(s => s.progresso > 0);
+            const setoresComAtraso = setoresComTarefas.filter(s => s.progresso === 0);
+
+            // Renderizar setores em progresso
+            const progressGrid = document.getElementById('progress-grid');
+            progressGrid.innerHTML = setoresEmProgresso.map(setor => `
+                <div class="card-modern hover-lift border-0 overflow-hidden rounded-2xl">
+                    <div class="relative pb-4 sm:pb-6">
+                        <div class="absolute inset-0 bg-gradient-to-r ${setor.color} opacity-5"></div>
+                        <div class="relative p-6">
+                            <div class="flex items-start justify-between mb-4 sm:mb-6">
+                                <div class="flex items-center space-x-3 sm:space-x-4 flex-1">
+                                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-gradient-to-r ${setor.color} flex items-center justify-center text-xl sm:text-2xl shadow-lg flex-shrink-0">
+                                        ${setor.icon}
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h3 class="text-base sm:text-lg lg:text-xl text-slate-900 font-semibold">
+                                            ${setor.nome}
+                                        </h3>
+                                        <span class="text-[10px] sm:text-xs mt-1 bg-green-50 text-green-700 border border-green-200 px-2.5 py-1 rounded-full inline-flex items-center gap-1">
+                                            <i class="fas fa-check-circle text-[8px] sm:text-[10px]"></i>${setor.progresso}% Concluído
+                                        </span>
+                                    </div>
+                                </div>
+                                <button onclick="abrirModal('${setor.id}')" class="hover:bg-slate-100 text-slate-600 p-2 rounded-md transition-all flex-shrink-0">
+                                    <i class="fas fa-eye w-5 h-5 sm:w-6 sm:h-6"></i>
+                                </button>
+                            </div>
+
+                            <div class="space-y-2">
+                                <div class="w-full bg-slate-200 rounded-full h-2 sm:h-2.5 overflow-hidden">
+                                    <div class="bg-gradient-to-r ${setor.color} h-full rounded-full transition-all duration-500" style="width: ${setor.progresso}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 sm:space-y-6 p-6 pt-0">
+                        <div>
+                            <h4 class="text-sm sm:text-base font-semibold text-slate-900 mb-2 sm:mb-3">Tarefas</h4>
+                            <ul class="space-y-2">
+                                ${setor.tarefas.map(tarefa => `
+                                    <li class="flex items-start space-x-2 text-xs sm:text-sm">
+                                        <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${tarefa.concluida ? 'bg-green-500' : 'bg-slate-300'}">
+                                            ${tarefa.concluida ? '<i class="fas fa-check-circle w-3 h-3 text-white"></i>' : ''}
+                                        </div>
+                                        <span class="${tarefa.concluida ? 'text-slate-500 line-through' : 'text-slate-700 font-medium'}">
+                                            ${tarefa.nome}
+                                        </span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="pt-2 sm:pt-4 border-t border-slate-200">
+                            <p class="text-xs sm:text-sm text-slate-600">
+                                <span class="font-semibold text-slate-900">${setor.tarefas.filter(t => t.concluida).length}/${setor.tarefas.length}</span>
+                                tarefas concluídas
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Renderizar setores com atraso
+            if (setoresComAtraso.length > 0) {
+                document.getElementById('setores-atraso').classList.remove('hidden');
+                const delayedGrid = document.getElementById('delayed-grid');
+                delayedGrid.innerHTML = setoresComAtraso.map(setor => `
+                    <div class="card-modern hover-lift border-0 overflow-hidden rounded-2xl border-l-4 border-red-500 opacity-75">
+                        <div class="relative pb-4 sm:pb-6 bg-red-50/30">
+                            <div class="absolute inset-0 bg-gradient-to-r ${setor.color} opacity-3"></div>
+                            <div class="relative p-6">
+                                <div class="flex items-start justify-between mb-4 sm:mb-6">
+                                    <div class="flex items-center space-x-3 sm:space-x-4 flex-1">
+                                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-gradient-to-r ${setor.color} flex items-center justify-center text-xl sm:text-2xl shadow-lg opacity-60 flex-shrink-0">
+                                            ${setor.icon}
+                                        </div>
+                                        <div class="min-w-0">
+                                            <h3 class="text-base sm:text-lg lg:text-xl text-slate-900 font-semibold">
+                                                ${setor.nome}
+                                            </h3>
+                                            <span class="text-[10px] sm:text-xs mt-1 bg-red-100 text-red-700 border border-red-200 px-2.5 py-1 rounded-full inline-flex items-center gap-1">
+                                                <i class="fas fa-exclamation-circle text-[8px] sm:text-[10px]"></i>Sem Progresso
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button onclick="abrirModal('${setor.id}')" class="hover:bg-slate-100 text-slate-600 p-2 rounded-md transition-all flex-shrink-0">
+                                        <i class="fas fa-eye w-5 h-5 sm:w-6 sm:h-6"></i>
+                                    </button>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <div class="w-full bg-slate-200 rounded-full h-2 sm:h-2.5 overflow-hidden">
+                                        <div class="bg-red-300 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4 sm:space-y-6 p-6 pt-0">
+                            <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                                <p class="text-sm text-red-800 font-medium">
+                                    Este setor ainda não iniciou suas tarefas e precisa de atenção prioritária.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 class="text-sm sm:text-base font-semibold text-slate-900 mb-2 sm:mb-3">
+                                    Tarefas Pendentes
+                                </h4>
+                                <ul class="space-y-2">
+                                    ${setor.tarefas.map(tarefa => `
+                                        <li class="flex items-start space-x-2 text-xs sm:text-sm">
+                                            <i class="fas fa-clock w-4 h-4 text-red-500 mt-0.5 flex-shrink-0"></i>
+                                            <span class="text-slate-700">${tarefa.nome}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function abrirModal(setorId) {
+            const setor = setoresComTarefas.find(s => s.id === setorId);
+            if (!setor) return;
+
+            document.getElementById('modal-title').textContent = setor.nome;
+
+            const tarefasConcluidas = setor.tarefas.filter(t => t.concluida).length;
+            const modalContent = document.getElementById('modal-content');
+
+            modalContent.innerHTML = `
+                <div class="space-y-6 mt-6">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-r ${setor.color} flex items-center justify-center text-2xl shadow-lg">
+                            ${setor.icon}
+                        </div>
+                        <div>
+                            <span class="text-[10px] bg-green-50 text-green-700 border border-green-200 px-2.5 py-1 rounded-full inline-flex items-center gap-1">
+                                <i class="fas fa-check-circle text-[8px]"></i>${setor.progresso}% Concluído
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-semibold text-slate-900">Progresso do Setor</h3>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-slate-600">Conclusão Geral</span>
+                            <span class="text-2xl font-bold text-slate-900">${setor.progresso}%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                            <div class="bg-gradient-to-r ${setor.color} h-full rounded-full transition-all duration-500" style="width: ${setor.progresso}%"></div>
+                        </div>
+                    </div>
+
+                    <div class="text-center p-4 bg-slate-50 rounded-lg">
+                        <div class="text-2xl font-bold text-blue-600">${tarefasConcluidas}/${setor.tarefas.length}</div>
+                        <div class="text-sm text-slate-600 mt-1">Tarefas Concluídas</div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-semibold text-slate-900">Tarefas Detalhadas</h3>
+                        <div class="space-y-2">
+                            ${setor.tarefas.map(tarefa => `
+                                <div class="flex items-start space-x-3 p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                                    <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${tarefa.concluida ? 'bg-green-500' : 'bg-slate-300'}">
+                                        ${tarefa.concluida ? '<i class="fas fa-check-circle w-4 h-4 text-white"></i>' : ''}
+                                    </div>
+                                    <span class="text-sm ${tarefa.concluida ? 'text-slate-500 line-through' : 'text-slate-800 font-medium'}">
+                                        ${tarefa.nome}
+                                    </span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('detailsModal').classList.add('show');
+        }
+
+        function closeModal(event) {
+            if (!event || event.target.id === 'detailsModal') {
+                document.getElementById('detailsModal').classList.remove('show');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderizarSetores);
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - BORAÊ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+  <style>
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: linear-gradient(to bottom, #3a12c0 0%, #4d19e6 100%);
+      box-shadow: 0 2px 16px rgba(77,25,230,.35);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#f4f4f8] font-sans text-slate-900">
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="../../public/nova-logo-borae.png" alt="BORAÊ Logo" style="height: 150px; width: auto;" />
+                </div>
+
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <a href="../index.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-home w-4 h-4 mr-2"></i>Início
+                    </a>
+                    <a href="../organograma/organograma.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-users w-4 h-4 mr-2"></i>Organograma
+                    </a>
+                    <a href="../dashboard/dashboard.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white bg-white/15 transition-all">
+                        <i class="fas fa-chart-line w-4 h-4 mr-2"></i>Dashboard
+                    </a>
+                    <a href="../eventos/eventos.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-calendar w-4 h-4 mr-2"></i>Eventos
+                    </a>
+                    <a href="../tarefas/tarefas.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-tasks w-4 h-4 mr-2"></i>Tarefas
+                    </a>
+                    <a href="../sobre/sobre.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-info w-4 h-4 mr-2"></i>Sobre
+                    </a>
+                    <a href="../contato/contato.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <i class="fas fa-envelope w-4 h-4 mr-2"></i>Contato
+                    </a>
+                </nav>
+
+                <button class="lg:hidden p-2 text-white/85 hover:text-white hover:bg-white/10 rounded-md transition-all" onclick="toggleMenu()">
+                    <i class="fas fa-bars w-6 h-6" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         📱 MOBILE NAVIGATION MENU
+         ============================================================
+         Responsive menu for mobile/tablet users
+         - Hidden on desktop (lg:hidden)
+         - Fixed position at top-16 (below header)
+         - Toggle with toggleMenu() function
+         ============================================================ -->
+    <div id="mobile-menu" class="lg:hidden bg-white border-b border-slate-200 fixed w-full z-40 top-16 hidden">
+        <div class="px-4 pt-2 pb-4 space-y-1">
+            <a href="../index.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <i class="fas fa-home w-4 h-4 mr-2"></i>Início
+            </a>
+            <a href="../organograma/organograma.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <i class="fas fa-users w-4 h-4 mr-2"></i>Organograma
+            </a>
+            <a href="../dashboard/dashboard.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-white bg-white/15" onclick="toggleMenu()">
+                <i class="fas fa-chart-line w-4 h-4 mr-2"></i>Dashboard
+            </a>
+            <a href="../eventos/eventos.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <i class="fas fa-calendar w-4 h-4 mr-2"></i>Eventos
+            </a>
+            <a href="../tarefas/tarefas.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <i class="fas fa-tasks w-4 h-4 mr-2"></i>Tarefas
+            </a>
+            <a href="../sobre/sobre.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <i class="fas fa-info w-4 h-4 mr-2"></i>Sobre
+            </a>
+            <a href="../contato/contato.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <i class="fas fa-envelope w-4 h-4 mr-2"></i>Contato
+            </a>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         ✅ DASHBOARD CONTENT SECTION
+         ============================================================
+         Main content area for dashboard
+         - Logo changed: logo-borae.jpg → nova-logo-borae.png ✅
+         - Logo size: header height 240px (via inline style)
+         - Navigation: 8 standardized links with Font Awesome icons
+         - Mobile menu: toggles with hamburger button
+         
+         Sections:
+         1. Page Header (title + description)
+         2. KPI Cards (4-column grid, responsive: 1→2→4)
+         3. Charts & Graphs (below KPIs)
+         4. Detailed Reports (bottom section)
+         ============================================================ -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Dashboard Executivo</h1>
+            <p class="mt-1 text-slate-500">Visão geral de desempenho e métricas da organização.</p>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="p-2 bg-blue-50 rounded-lg">
+                        <i class="fas fa-chart-line w-6 h-6 text-blue-600"></i>
+                    </div>
+                    <span class="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded-full flex items-center">
+                        <i class="fas fa-arrow-up-right w-3 h-3 mr-1"></i>+12%
+                    </span>
+                </div>
+                <div class="text-3xl font-bold text-slate-900 mb-1" id="totalProgress">79%</div>
+                <p class="text-sm text-slate-500">Progresso Geral</p>
+            </div>
+
+            <div class="border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="p-2 bg-purple-50 rounded-lg">
+                        <i class="fas fa-users w-6 h-6 text-purple-600"></i>
+                    </div>
+                    <span class="text-xs font-medium text-slate-500 bg-slate-50 px-2 py-1 rounded-full">Ativos</span>
+                </div>
+                <div class="text-3xl font-bold text-slate-900 mb-1">29</div>
+                <p class="text-sm text-slate-500">Colaboradores Totais</p>
+            </div>
+
+            <div class="border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="p-2 bg-green-50 rounded-lg">
+                        <i class="fas fa-check-circle w-6 h-6 text-green-600"></i>
+                    </div>
+                    <span class="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded-full flex items-center">
+                        <i class="fas fa-arrow-up-right w-3 h-3 mr-1"></i>+12%
+                    </span>
+                </div>
+                <div class="text-3xl font-bold text-slate-900 mb-1">5</div>
+                <p class="text-sm text-slate-500">Setores em Dia</p>
+            </div>
+
+            <div class="border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="p-2 bg-amber-50 rounded-lg">
+                        <i class="fas fa-exclamation-circle w-6 h-6 text-amber-600"></i>
+                    </div>
+                    <span class="text-xs font-medium text-amber-600 bg-amber-50 px-2 py-1 rounded-full">Atenção</span>
+                </div>
+                <div class="text-3xl font-bold text-slate-900 mb-1">0</div>
+                <p class="text-sm text-slate-500">Setores em Alerta</p>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+            <!-- Main Chart -->
+            <div class="lg:col-span-2 border border-slate-200 rounded-lg shadow-sm p-6">
+                <h3 class="text-lg font-semibold text-slate-900 mb-1">Evolução Mensal</h3>
+                <p class="text-sm text-slate-500 mb-6">Comparativo de progresso real vs meta esperada</p>
+                <div class="h-[300px] w-full">
+                    <canvas id="progressChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Distribution Chart -->
+            <div class="border border-slate-200 rounded-lg shadow-sm p-6">
+                <h3 class="text-lg font-semibold text-slate-900 mb-1">Status Geral</h3>
+                <p class="text-sm text-slate-500 mb-6">Distribuição de conclusão</p>
+                <div class="h-[250px] w-full flex items-center justify-center">
+                    <canvas id="statusChart" style="max-width: 150px; max-height: 150px;"></canvas>
+                </div>
+                <div class="mt-6 space-y-2">
+                    <div class="flex justify-between items-center text-sm">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
+                            <span class="text-slate-600">Tarefas Concluídas</span>
+                        </div>
+                        <span class="font-medium text-slate-900" id="completedPercent">79%</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-slate-200 mr-2"></div>
+                            <span class="text-slate-600">Pendentes</span>
+                        </div>
+                        <span class="font-medium text-slate-900" id="pendingPercent">21%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sectors Grid -->
+        <h2 class="text-xl font-bold text-slate-900 mb-6">Detalhamento por Setor</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8" id="sectorsContainer">
+            <!-- Populated by JavaScript -->
+        </div>
+
+        <!-- Números da Organização -->
+        <div class="border border-slate-200 rounded-lg shadow-sm p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8 text-slate-800">
+                Nossa Organização em Números
+            </h2>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div class="text-center group">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl sm:rounded-2xl mx-auto mb-3 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-xl sm:text-2xl font-bold text-white">5</span>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-600">Setores</span>
+                </div>
+                <div class="text-center group">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl sm:rounded-2xl mx-auto mb-3 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-xl sm:text-2xl font-bold text-white">29</span>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-600">Colaboradores</span>
+                </div>
+                <div class="text-center group">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-xl sm:rounded-2xl mx-auto mb-3 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-xl sm:text-2xl font-bold text-white">5</span>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-600">Diretores</span>
+                </div>
+                <div class="text-center group">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-amber-500 to-amber-600 rounded-xl sm:rounded-2xl mx-auto mb-3 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-xl sm:text-2xl font-bold text-white">4</span>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-600">Eventos Realizados</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="sectorModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto">
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const sectorData = [
+            {
+                id: "marketing",
+                name: "Marketing",
+                icon: "📢",
+                color: "from-orange-500 to-red-500",
+                progress: 75,
+                team: 4,
+                status: "Em Progresso",
+                director: "Maria Clara Kirchhof",
+                achievements: [
+                    "Arrumou-se a estética do material",
+                    "O nome da marca foi atualizado",
+                    "Foram criados posts para redes sociais",
+                ],
+                nextSteps: "No futuro, será desenvolvido conteúdo para TikTok",
+                health: "good",
+                tasks: [
+                    { name: "Estética do material", completed: true },
+                    { name: "Mudança de nome", completed: true },
+                    { name: "Posts em redes sociais", completed: true },
+                    { name: "Conteúdo para TikTok", completed: false },
+                ],
+            },
+            {
+                id: "pd",
+                name: "P&D",
+                icon: "🔬",
+                color: "from-indigo-500 to-violet-600",
+                progress: 80,
+                team: 11,
+                status: "Excelente",
+                director: "Giulia Borges Santos Ferro",
+                achievements: [
+                    "Fusão dos departamentos de Pesquisa e Desenvolvimento",
+                    "Análise profunda e processo criativo com novas sugestões",
+                    "Fortalecimento do trabalho em equipe e cooperação",
+                    "Melhoria na organização das tarefas e cumprimento de prazos",
+                    "Participação ativa na resolução de demandas de outros setores",
+                ],
+                nextSteps: "Criar canais estruturados de comunicação e fluxos integrados entre áreas",
+                health: "good",
+                tasks: [
+                    { name: "Fusão de departamentos", completed: true },
+                    { name: "Análise de dados", completed: true },
+                    { name: "Organização interna", completed: true },
+                    { name: "Trabalho em equipe", completed: true },
+                    { name: "Canal de comunicação estruturado", completed: false },
+                ],
+            },
+            {
+                id: "eventos",
+                name: "Eventos",
+                icon: "🎉",
+                color: "from-purple-500 to-pink-500",
+                progress: 80,
+                team: 6,
+                status: "Excelente",
+                director: "Gustavo Alves Sartorelli de Souza",
+                achievements: [
+                    "Evolução significativa desde o início",
+                    "Comunicação muito mais clara e eficiente",
+                    "Alinhamento melhorado das tarefas",
+                    "Fortalecimento do trabalho em equipe",
+                    "Entregas mais organizadas e assertivas",
+                ],
+                nextSteps: "Continuar mantendo a excelente comunicação e aprimorar processos",
+                health: "good",
+                tasks: [
+                    { name: "Comunicação clara", completed: true },
+                    { name: "Alinhamento de tarefas", completed: true },
+                    { name: "Planejamento de eventos", completed: true },
+                    { name: "Melhoria contínua de processos", completed: true },
+                ],
+            },
+            {
+                id: "ti",
+                name: "Tecnologia da Informação",
+                icon: "💻",
+                color: "from-emerald-500 to-teal-500",
+                progress: 90,
+                team: 4,
+                status: "Excelente",
+                director: "Guilherme Henrique dos Santos Monteiro",
+                achievements: [
+                    "Criaram o site da organização",
+                    "Desenvolveram o organograma interativo",
+                    "Criaram o drive para organização de documentos",
+                    "Implementaram o assistente virtual BORUS",
+                ],
+                nextSteps: "Melhorias futuras e manutenção do sistema",
+                health: "good",
+                tasks: [
+                    { name: "Site da organização", completed: true },
+                    { name: "Organograma interativo", completed: true },
+                    { name: "Drive de documentos", completed: true },
+                    { name: "Assistente BORUS", completed: true },
+                    { name: "Manutenção do sistema", completed: false },
+                ],
+            },
+            {
+                id: "rh",
+                name: "Recursos Humanos",
+                icon: "👥",
+                color: "from-rose-500 to-pink-600",
+                progress: 85,
+                team: 4,
+                status: "Excelente",
+                director: "Layne Rodrigues Silva",
+                achievements: [
+                    "Controle completo do diário de bordo com revisões",
+                    "Aplicação de atividades e eventos (ex: Setembro Amarelo)",
+                    "Responsável por apresentações e eventos entre salas",
+                    "Acompanhamento do Clima Organizacional",
+                    "Reestruturação organizacional concluída",
+                ],
+                nextSteps: "Desenvolver atividades internas e acompanhar nova estrutura",
+                health: "good",
+                tasks: [
+                    { name: "Controle do diário de bordo", completed: true },
+                    { name: "Aplicação de eventos", completed: true },
+                    { name: "Acompanhamento do clima organizacional", completed: true },
+                    { name: "Reestruturação organizacional", completed: true },
+                    { name: "Atividades internas de clima", completed: false },
+                ],
+            },
+        ];
+
+        const totalProgress = Math.round(sectorData.reduce((acc, s) => acc + s.progress, 0) / sectorData.length);
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+
+        function renderSectors() {
+            const container = document.getElementById('sectorsContainer');
+            container.innerHTML = sectorData.map((sector) => `
+                <div class="border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer group overflow-hidden" onclick="openModal('${sector.id}')">
+                    <div class="h-1.5 w-full bg-gradient-to-r ${sector.color}"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2.5 rounded-lg bg-slate-50 text-2xl group-hover:scale-110 transition-transform duration-300">
+                                    ${sector.icon}
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-900">${sector.name}</h3>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span class="text-xs font-normal bg-slate-100 text-slate-600 px-2 py-1 rounded hover:bg-slate-200 transition-colors">
+                                            ${sector.team} membros
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            ${sector.health === "good" ? '<i class="fas fa-check-circle w-5 h-5 text-green-500"></i>' : '<i class="fas fa-exclamation-circle w-5 h-5 text-amber-500"></i>'}
+                        </div>
+
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-500">Progresso</span>
+                                <span class="font-medium text-slate-900">${sector.progress}%</span>
+                            </div>
+                            <div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r ${sector.color} rounded-full transition-all duration-500" style="width: ${sector.progress}%"></div>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100">
+                            <p class="text-sm text-slate-600 line-clamp-2">
+                                <span class="font-medium text-slate-900">Próximo passo:</span> ${sector.nextSteps}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(sectorId) {
+            const sector = sectorData.find(s => s.id === sectorId);
+            if (!sector) return;
+
+            const tasksHtml = sector.tasks.map((task, idx) => `
+                <div class="flex items-center p-3 hover:bg-slate-50 rounded-lg transition-colors cursor-default">
+                    <div class="w-5 h-5 rounded border flex items-center justify-center mr-3 ${task.completed ? 'bg-blue-500 border-blue-500 text-white' : 'border-slate-300'}">
+                        ${task.completed ? '<i class="fas fa-check w-3.5 h-3.5"></i>' : ''}
+                    </div>
+                    <span class="text-sm ${task.completed ? 'text-slate-500 line-through' : 'text-slate-700 font-medium'}">
+                        ${task.name}
+                    </span>
+                </div>
+            `).join('');
+
+            const achievementsHtml = sector.achievements.map(achievement => `
+                <div class="flex items-start p-3 bg-white border border-slate-100 rounded-lg shadow-sm">
+                    <i class="fas fa-check-circle w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5"></i>
+                    <span class="text-sm text-slate-600">${achievement}</span>
+                </div>
+            `).join('');
+
+            const modalContent = `
+                <div class="h-24 bg-gradient-to-r ${sector.color} relative">
+                    <div class="absolute -bottom-8 left-8 p-4 bg-white rounded-xl shadow-lg">
+                        <div class="text-4xl">${sector.icon}</div>
+                    </div>
+                </div>
+
+                <div class="pt-12 px-8 pb-8">
+                    <div class="mb-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h2 class="text-2xl font-bold text-slate-900 mb-1">${sector.name}</h2>
+                                <p class="text-slate-500 flex items-center gap-2">
+                                    <i class="fas fa-users w-4 h-4"></i> ${sector.team} colaboradores
+                                </p>
+                            </div>
+                            <span class="text-sm px-3 py-1 ${sector.health === "good" ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'} rounded-full">
+                                ${sector.status}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium text-slate-700">Progresso Atual</span>
+                                <span class="font-bold text-slate-900">${sector.progress}%</span>
+                            </div>
+                            <div class="h-3 w-full bg-slate-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r ${sector.color}" style="width: ${sector.progress}%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center">
+                                <i class="fas fa-target w-4 h-4 mr-2 text-blue-500"></i>
+                                Conquistas Recentes
+                            </h4>
+                            <div class="grid gap-3">
+                                ${achievementsHtml}
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center">
+                                <i class="fas fa-list-check w-4 h-4 mr-2 text-purple-500"></i>
+                                Checklist de Entregas
+                            </h4>
+                            <div class="space-y-2">
+                                ${tasksHtml}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute top-4 right-4">
+                    <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 transition-colors">
+                        <i class="fas fa-times w-6 h-6"></i>
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('modalContent').innerHTML = modalContent;
+            document.getElementById('sectorModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('sectorModal').classList.add('hidden');
+        }
+
+        document.getElementById('sectorModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('sectorModal')) {
+                closeModal();
+            }
+        });
+
+        // Initialize charts
+        function initCharts() {
+            const monthlyProgressData = [
+                { month: "Mai", progresso: 55, meta: 60 },
+                { month: "Jun", progresso: 62, meta: 65 },
+                { month: "Jul", progresso: 68, meta: 70 },
+                { month: "Ago", progresso: 73, meta: 75 },
+                { month: "Set", progresso: 76, meta: 80 },
+                { month: "Out", progresso: 79, meta: 85 },
+                { month: "Nov", progresso: totalProgress, meta: 90 },
+            ];
+
+            // Progress Chart
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            new Chart(progressCtx, {
+                type: 'line',
+                data: {
+                    labels: monthlyProgressData.map(d => d.month),
+                    datasets: [
+                        {
+                            label: 'Progresso Real',
+                            data: monthlyProgressData.map(d => d.progresso),
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            borderWidth: 3,
+                        },
+                        {
+                            label: 'Meta Esperada',
+                            data: monthlyProgressData.map(d => d.meta),
+                            borderColor: '#94a3b8',
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.4,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { color: '#64748b' },
+                            grid: { color: '#e2e8f0' }
+                        },
+                        x: {
+                            ticks: { color: '#64748b' },
+                            grid: { color: '#e2e8f0' }
+                        }
+                    }
+                }
+            });
+
+            // Status Chart (Doughnut)
+            const statusCtx = document.getElementById('statusChart').getContext('2d');
+            new Chart(statusCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Completo', 'Restante'],
+                    datasets: [{
+                        data: [totalProgress, 100 - totalProgress],
+                        backgroundColor: ['#3b82f6', '#e2e8f0'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('totalProgress').textContent = totalProgress + '%';
+            document.getElementById('completedPercent').textContent = totalProgress + '%';
+            document.getElementById('pendingPercent').textContent = (100 - totalProgress) + '%';
+            renderSectors();
+            initCharts();
+
+            /* ✅ BORUS - ASSISTENTE VIRTUAL */
+            const colaboradores = [
+              { nome:"Guilherme dos Santos", departamento:"Diretoria", cargo:"Diretor" },
+              { nome:"Gustavo Sartorelli", departamento:"Diretoria", cargo:"Diretor" },
+              { nome:"Filipe Ferreira de Araújo", departamento:"Tecnologia da Informação", cargo:"Membro" },
+            ];
+            let borusOpen = false, isTyping = false;
+            const messages = [{ id: 'welcome', role: 'assistant', content: 'Olá! Sou o **BORUS**. Como posso ajudar?', timestamp: new Date() }];
+            const fuse = new Fuse(colaboradores, { keys: ['nome'], threshold: 0.3, includeScore: true, ignoreLocation: true, minMatchCharLength: 2 });
+            function generateResponse(msg) {
+              const m = msg.toLowerCase();
+              if (/borus|site|desenvolveu|criou|filipe/.test(m)) return '**Filipe Ferreira de Araújo** desenvolveu este site e o **BORUS**! Ele trabalha em Tecnologia da Informação na BORAÊ. 🚀';
+              if (/sobre|empresa/.test(m)) return 'A **BORAÊ** é uma agência de eventos e promoção cultural para jovens! 🎭';
+              if (/contato|instagram/.test(m)) return '📸 Instagram: @_boraee\n📍 Rua Alexandre Dumas, 2016, São Paulo';
+              if (/eventos/.test(m)) return 'Eventos: Farol Santander, Setembro Amarelo, Boraween e mais! 🎉';
+              return 'Pergunte sobre BORAÊ, eventos, colaboradores ou contato! 😊';
+            }
+            function renderMessages() {
+              const container = document.getElementById('borus-messages');
+              if (!container) return;
+              container.innerHTML = messages.map(m => `<div class="flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}"><div class="max-w-xs ${m.role === 'user' ? 'bg-amber-600 text-white' : 'bg-stone-100'} rounded-lg px-4 py-2 text-sm">${m.content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div></div>`).join('');
+              if (isTyping) container.innerHTML += '<div class="flex"><div class="flex gap-1"><span class="w-2 h-2 bg-stone-400 rounded-full dot1"></span><span class="w-2 h-2 bg-stone-400 rounded-full dot2"></span><span class="w-2 h-2 bg-stone-400 rounded-full dot3"></span></div></div>';
+              container.scrollTop = container.scrollHeight;
+            }
+            document.getElementById('borus-toggle')?.addEventListener('click', () => {
+              borusOpen = !borusOpen;
+              const popup = document.getElementById('borus-popup');
+              if (popup) popup.classList.toggle('open', borusOpen);
+            });
+            document.getElementById('borus-close')?.addEventListener('click', () => {
+              borusOpen = false;
+              const popup = document.getElementById('borus-popup');
+              if (popup) popup.classList.remove('open');
+            });
+            document.getElementById('borus-send')?.addEventListener('click', () => {
+              const input = document.getElementById('borus-input');
+              if (input && input.value.trim()) {
+                messages.push({ id: Date.now(), role: 'user', content: input.value, timestamp: new Date() });
+                isTyping = true;
+                renderMessages();
+                setTimeout(() => {
+                  isTyping = false;
+                  messages.push({ id: Date.now(), role: 'assistant', content: generateResponse(input.value), timestamp: new Date() });
+                  renderMessages();
+                  lucide.createIcons();
+                }, 600);
+                input.value = '';
+              }
+            });
+            document.getElementById('borus-input')?.addEventListener('keypress', (e) => {
+              if (e.key === 'Enter') document.getElementById('borus-send')?.click();
+            });
+            renderMessages();
+            lucide.createIcons();
+        });
+    </script>
+
+    
+</body>
+</html>
+

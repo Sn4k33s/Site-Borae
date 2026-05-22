@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-br"><!-- ============================================================
+     SOBRE - PÁGINA DE INFORMAÇÕES DA BORAÊ
+     ============================================================
+     Página com:
+     - Missão, Visão, Valores da empresa
+     - Cards de informações corporativas
+     - Links para redes sociais (Instagram)
+     - Design moderno com gradientes
+     
+     ✅ MUDANÇAS RECENTES:
+     - Logo substituída: logo-borae.jpg → nova-logo-borae.png
+     - Tamanho logo: aumentado para 240px (height: 240px)
+     - Ícones: CONVERTIDOS de Font Awesome para SVG inline
+       * Home: ícone casa em SVG
+       * Users: ícone pessoas em SVG
+       * Chart: ícone gráfico em SVG
+       * Etc... (toda navegação usa SVG inline)
+     ============================================================ --><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre BORAÊ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- ✅ BORUS Dependencies: Lucide icons + Fuse.js for search -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+    <link rel="stylesheet" href="../../styles/global-styles.css">
+</head>
+<body class="min-h-screen bg-[#f4f4f8] font-sans text-slate-900">
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo Header -->
+                <!-- ✅ NOVA LOGO: nova-logo-borae.png | TAMANHO: 240px -->
+                <!-- Substituída de logo-borae.jpg → nova-logo-borae.png com style inline -->
+                <div class="flex items-center">
+                    <img src="../../public/nova-logo-borae.png" alt="BORAÊ Logo" style="height: 150px; width: auto;" />
+                </div>
+
+                <!-- Desktop Navigation -->
+                <!-- 8 Links com ÍCONES SVG INLINE (não usa Font Awesome) -->
+                <!-- ✅ ÍCONES CONVERTIDOS: Todos os ícones foram substituídos de Font Awesome para SVG -->
+                <!-- Exemplo: fas fa-home → SVG inline com path d="..." -->
+                <!-- Ordem: Início → Organograma → Dashboard → Eventos → Tarefas → Sobre (ativo) → Contato -->
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <!-- Ícone Início (Casa) em SVG -->
+                    <a href="../index.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>Início
+                    </a>
+                    <!-- Ícone Organograma (Pessoas) em SVG -->
+                    <a href="../organograma/organograma.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>Organograma
+                    </a>
+                    <a href="../dashboard/dashboard.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 6.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v13.5c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V6.875ZM16.5 6c0-.621.504-1.125 1.125-1.125h2.25C20.496 4.875 21 5.379 21 6v13.875c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V6Z"/></svg>Dashboard
+                    </a>
+                    <a href="../eventos/eventos.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>Eventos
+                    </a>
+                    <a href="../tarefas/tarefas.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/></svg>Tarefas
+                    </a>
+                    <a href="../sobre/sobre.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white bg-white/15 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/></svg>Sobre
+                    </a>
+                    <a href="../contato/contato.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>Contato
+                    </a>
+                </nav>
+
+                <button class="lg:hidden p-2 text-white/85 hover:text-white hover:bg-white/10 rounded-md transition-all" onclick="toggleMenu()">
+                    <i class="fas fa-bars w-6 h-6" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden bg-white border-b border-slate-200 fixed w-full z-40 top-16 hidden">
+        <div class="px-4 pt-2 pb-4 space-y-1">
+            <a href="../index.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>Início
+            </a>
+            <a href="../organograma/organograma.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>Organograma
+            </a>
+            <a href="../dashboard/dashboard.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 6.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v13.5c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V6.875ZM16.5 6c0-.621.504-1.125 1.125-1.125h2.25C20.496 4.875 21 5.379 21 6v13.875c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V6Z"/></svg>Dashboard
+            </a>
+            <a href="../eventos/eventos.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>Eventos
+            </a>
+            <a href="../tarefas/tarefas.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/></svg>Tarefas
+            </a>
+            <a href="../sobre/sobre.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-white bg-white/15" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/></svg>Sobre
+            </a>
+            <a href="../contato/contato.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>Contato
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="relative bg-slate-900 text-white py-20 sm:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('../../public/abstract-geometric-dark.jpg')] bg-cover bg-center opacity-20"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/90"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-block mb-6 px-4 py-1 text-sm uppercase tracking-wider text-blue-300 border border-blue-400/30 rounded-full">
+                Nossa Essência
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Transformando Jovens <br class="hidden sm:block" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                    Através da Cultura
+                </span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Somos uma agência dedicada a conectar a juventude com arte, música e conhecimento, criando experiências que
+                inspiram e transformam.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="../contato/contato.html" class="inline-flex items-center px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition">
+                    Fale Conosco
+                </a>
+                <a href="../organograma/organograma.html" class="inline-flex items-center px-8 py-3 border border-slate-600 text-white hover:bg-slate-800 font-semibold rounded-md transition bg-transparent">
+                    Conheça a Equipe
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <!-- Values Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+            <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl transition-all duration-300 group">
+                <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <i class="fas fa-bullseye w-7 h-7 text-blue-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Nossa Missão</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Promover cultura, informação e entretenimento para o maior número possível de jovens de forma educativa,
+                    autêntica e impactante.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl transition-all duration-300 group">
+                <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <i class="fas fa-star w-7 h-7 text-purple-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Nossa Visão</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Trazer para os jovens que tenham pouco interesse, acesso ou oportunidade, variados tipos de entretenimento
+                    e educação cultural.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl transition-all duration-300 group">
+                <div class="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <i class="fas fa-heart w-7 h-7 text-pink-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Nossos Valores</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Paixão pela cultura, valorização da diversidade, aprendizado através da experiência, transparência e
+                    reconhecimento do potencial humano.
+                </p>
+            </div>
+        </div>
+
+        <!-- Social Proof / Connect -->
+        <div class="bg-slate-900 rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('../../public/social-media-pattern.jpg')] opacity-10 bg-cover bg-center"></div>
+            <div class="relative z-10 max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6">Conecte-se Conosco</h2>
+                <p class="text-slate-300 mb-8 text-lg">
+                    Acompanhe nossos bastidores, novidades e próximos eventos em nossas redes sociais. Faça parte da nossa
+                    comunidade!
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://www.instagram.com/_boraee/" target="_blank" rel="noopener noreferrer" class="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all">
+                        <i class="fab fa-instagram w-5 h-5 mr-2"></i>Instagram
+                    </a>
+                    <a href="#" class="flex items-center px-6 py-3 bg-blue-600 rounded-full font-semibold hover:bg-blue-700 hover:shadow-lg hover:scale-105 transition-all">
+                        <i class="fab fa-facebook w-5 h-5 mr-2"></i>Facebook
+                    </a>
+                    <a href="#" class="flex items-center px-6 py-3 bg-slate-800 border border-slate-700 rounded-full font-semibold hover:bg-slate-700 hover:shadow-lg hover:scale-105 transition-all">
+                        <span class="mr-2 font-bold">Tk</span>TikTok
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BORUS Section -->
+        <div class="mt-24">
+            <div class="text-center mb-12">
+                <div class="inline-block mb-4 px-4 py-1 text-sm uppercase tracking-wider text-stone-600 border border-stone-300 rounded-full">
+                    Assistente Virtual
+                </div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Conheça o BORUS</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">
+                    Nosso assistente virtual inteligente está sempre disponível para ajudar você.
+                </p>
+            </div>
+
+            <div class="border border-slate-200 shadow-lg rounded-2xl overflow-hidden max-w-2xl mx-auto">
+                <div class="bg-gradient-to-r from-stone-700 to-stone-900 p-6 text-white">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
+                            <i class="fas fa-robot w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">BORUS</h3>
+                            <p class="text-stone-300 text-sm">Seu assistente virtual 24/7</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-slate-600 mb-4">
+                        O <strong>BORUS</strong> (Bot for Organizational Research & Unified Support) é nosso assistente
+                        virtual inteligente. Ele pode responder perguntas sobre:
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-sparkles w-4 h-4 text-stone-400"></i>
+                            Informações sobre a empresa
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-users w-4 h-4 text-stone-400"></i>
+                            Colaboradores e departamentos
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-calendar w-4 h-4 text-stone-400"></i>
+                            Eventos realizados
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-bolt w-4 h-4 text-stone-400"></i>E muito mais!
+                        </li>
+                    </ul>
+                    <p class="text-slate-500 text-sm mt-4 flex items-center gap-2">
+                        <i class="fas fa-arrow-right w-4 h-4"></i>
+                        Clique no ícone no canto inferior direito para conversar
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12" style="background: linear-gradient(to top, #2209a0 0%, #4d19e6 100%)">        <!-- FOOTER -->
+        <!-- Logo reduzida + Copyright + Links -->
+        <!-- ✅ NOVA LOGO: nova-logo-borae.png (footer) -->
+        <!-- Substituída de logo-borae.jpg → nova-logo-borae.png -->
+        <!-- Classe: h-8 w-auto mr-3 com grayscale hover effect -->        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="../../public/nova-logo-borae.png" alt="BORAÊ Logo" style="height: 100px; width: auto;" />
+                <span class="text-slate-500 text-sm">© 2025 BORAÊ. Todos os direitos reservados.</span>
+            </div>
+            <div class="flex space-x-8">
+                <a href="../sobre/sobre.html" class="text-slate-500 hover:text-blue-600 text-sm font-medium transition-colors">Sobre</a>
+                <a href="../contato/contato.html" class="text-slate-500 hover:text-blue-600 text-sm font-medium transition-colors">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         ✅ BORUS FLOATING BUTTON & CHAT WIDGET
+         ============================================================
+         Bot for Organizational Research & Unified Support
+         Assistente virtual inteligente 24/7
+    -->
+    <button id="borus-toggle" class="borus-btn fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-slate-800 to-slate-900 rounded-full shadow-lg flex items-center justify-center text-white">
+        <i data-lucide="bot" class="w-6 h-6"></i>
+        <span class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></span>
+    </button>
+
+    <div id="borus-popup" class="fixed z-50 bottom-24 right-6 w-[calc(100vw-3rem)] max-w-md" style="height:500px;">
+        <div class="h-full flex flex-col shadow-2xl border border-slate-200 rounded-xl overflow-hidden bg-white">
+            <div class="bg-gradient-to-r from-slate-700 to-slate-900 text-white p-4 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <i data-lucide="bot" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">BORUS</h3>
+                        <p class="text-xs text-slate-300">BORAÊ Assistant</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="borus-expand" class="p-2 rounded-md text-white hover:bg-white/20 transition-colors">
+                        <i data-lucide="expand" class="w-4 h-4" id="expand-icon"></i>
+                    </button>
+                    <button id="borus-close" class="p-2 rounded-md text-white hover:bg-white/20 transition-colors">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="borus-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50"></div>
+            <div class="px-4 py-3 bg-white border-t border-slate-100 shrink-0">
+                <div id="borus-suggestions" class="flex flex-wrap gap-2"></div>
+            </div>
+            <div class="p-4 bg-white border-t border-slate-200 shrink-0">
+                <div class="flex gap-2">
+                    <input id="borus-input" type="text" placeholder="Digite sua pergunta..."
+                        class="flex-1 px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" />
+                    <button id="borus-send" class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded-md transition-colors flex items-center justify-center">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+
+        /* ============================================================
+           ✅ BORUS - ASSISTENTE VIRTUAL INTELIGENTE
+           ============================================================
+           Bot for Organizational Research & Unified Support
+           Sistema completo de chat com IA, sugestões, feedback e mais
+        */
+
+        // BORUS Data & State
+        const colaboradores = [
+            { nome:"Guilherme dos Santos",       departamento:"Diretoria",             cargo:"Diretor" },
+            { nome:"Gustavo Sartorelli",          departamento:"Diretoria",             cargo:"Diretor" },
+            { nome:"Bárbara Ferreira",            departamento:"Subdiretoria",          cargo:"Subdiretora" },
+            { nome:"Stefany Anne Apaza",          departamento:"Subdiretoria",          cargo:"Subdiretora" },
+            { nome:"Giulia Ferro",                departamento:"Marketing",             cargo:"Membro" },
+            { nome:"Clarice de Paula",            departamento:"Marketing",             cargo:"Membro" },
+            { nome:"Giovanna Camilo",             departamento:"Marketing",             cargo:"Membro" },
+            { nome:"Giovanna dos Santos",         departamento:"Marketing",             cargo:"Membro" },
+            { nome:"Maria Clara Kirchhof",        departamento:"Marketing",             cargo:"Membro" },
+            { nome:"Maria Eduarda Martins",       departamento:"Marketing",             cargo:"Membro" },
+            { nome:"Maria Vitoria Rocha",         departamento:"Marketing",             cargo:"Membro" },
+            { nome:"José Elias Gomes",            departamento:"Tecnologia da Informação", cargo:"Membro" },
+            { nome:"Diego Silva de Oliveira",     departamento:"Tecnologia da Informação", cargo:"Membro" },
+            { nome:"Luan Alves da Silva",         departamento:"Tecnologia da Informação", cargo:"Membro" },
+            { nome:"Pedro Henrique Dias",         departamento:"Tecnologia da Informação", cargo:"Membro" },
+            { nome:"Filipe Ferreira de Araújo",   departamento:"Tecnologia da Informação", cargo:"Membro" },
+            { nome:"Layne Rodrigues Silva",       departamento:"Recursos Humanos",      cargo:"Membro" },
+            { nome:"Mariana Favorin Cruz",        departamento:"Recursos Humanos",      cargo:"Membro" },
+            { nome:"Maria Eduarda Barbosa",       departamento:"Recursos Humanos",      cargo:"Membro" },
+            { nome:"Maria Julia Goes",            departamento:"Recursos Humanos",      cargo:"Membro" },
+            { nome:"Eliane Araújo Silva",         departamento:"Recursos Humanos",      cargo:"Membro" },
+            { nome:"Gustavo Bispo Viana",         departamento:"Recursos Humanos",      cargo:"Membro" },
+            { nome:"Willyan Rodrigues",           departamento:"Recursos Humanos",      cargo:"Membro" },
+            { nome:"Cléo Christine Silva",        departamento:"Desenvolvimento",       cargo:"Membro" },
+            { nome:"Fabio Andrade Irias",         departamento:"Desenvolvimento",       cargo:"Membro" },
+            { nome:"Luana da Silva",              departamento:"Desenvolvimento",       cargo:"Membro" },
+            { nome:"Lucas Pereira Santos",        departamento:"Desenvolvimento",       cargo:"Membro" },
+            { nome:"Maria Eduarda de Oliveira",   departamento:"Desenvolvimento",       cargo:"Membro" },
+            { nome:"Pablo Ackillys",              departamento:"Desenvolvimento",       cargo:"Membro" },
+            { nome:"Rafaela Matos",               departamento:"Desenvolvimento",       cargo:"Membro" },
+            { nome:"Rodrigo Souto",               departamento:"Desenvolvimento",       cargo:"Membro" },
+            { nome:"Sabrina Ramos Alves",         departamento:"Desenvolvimento",       cargo:"Membro" },
+            { nome:"Thifany Nicoly Gama",         departamento:"Desenvolvimento",       cargo:"Membro" },
+            { nome:"Gabrielle Alves de Oliveira", departamento:"Planejamento/Eventos",  cargo:"Membro" },
+            { nome:"Gabrielly Evangelista",       departamento:"Planejamento/Eventos",  cargo:"Membro" },
+            { nome:"Icaro Moreira Jorge",         departamento:"Planejamento/Eventos",  cargo:"Membro" },
+            { nome:"Luisa Holanda Alves",         departamento:"Planejamento/Eventos",  cargo:"Membro" },
+            { nome:"Richard Machado",             departamento:"Planejamento/Eventos",  cargo:"Membro" },
+            { nome:"Sofia Alves Sousa",           departamento:"Planejamento/Eventos",  cargo:"Membro" },
+            { nome:"Vinicius Neri Brandão",       departamento:"Planejamento/Eventos",  cargo:"Membro" },
+            { nome:"Karoline Xavier",             departamento:"Planejamento/Eventos",  cargo:"Membro" },
+            { nome:"Ana Clara Pereira da Silva",  departamento:"Pesquisa",             cargo:"Membro" },
+            { nome:"Iago Lima Flores",            departamento:"Pesquisa",             cargo:"Membro" },
+            { nome:"Isabelly Alves",              departamento:"Pesquisa",             cargo:"Membro" },
+            { nome:"Isabelly Pinheiro",           departamento:"Pesquisa",             cargo:"Membro" },
+            { nome:"Willian Marques Barbosa",     departamento:"Pesquisa",             cargo:"Membro" },
+            { nome:"Yuri Nascimento",             departamento:"Pesquisa",             cargo:"Membro" },
+            { nome:"Mariana Gonçalves",           departamento:"Pesquisa",             cargo:"Membro" },
+        ];
+
+        const eventosRealizados = [
+            { nome:"Visita ao Farol Santander",              data:"2025",           descricao:"Visita cultural ao icônico Farol Santander em São Paulo." },
+            { nome:"Setembro Amarelo - Jogo de Conscientização", data:"Setembro 2025", descricao:"Evento de conscientização sobre saúde mental." },
+            { nome:"Boraween",                               data:"Outubro 2025",   descricao:"Celebração temática de Halloween com toda a equipe." },
+            { nome:"Visita ao Centro Cultural Santo Amaro",  data:"2025",           descricao:"Exploração de espaços culturais." },
+        ];
+
+        const suggestionPools = [
+            ["O que é a BORAÊ?","Quais são os departamentos?","Quem são os diretores?","Qual a missão da empresa?"],
+            ["Quem criou este site?","Quais eventos foram realizados?","Quantos colaboradores tem?","Quais os valores da BORAÊ?"],
+            ["O que significa BORUS?","Quem trabalha no Marketing?","Qual o diferencial da empresa?","Onde fica a BORAÊ?"],
+            ["Quem são as subdiretoras?","Quem trabalha no RH?","O que foi o Boraween?","Qual a visão da BORAÊ?"],
+        ];
+
+        let borusOpen = false, borusExpanded = false, isTyping = false, currentPool = 0;
+        const feedbackGiven = new Set();
+        let copiedId = null;
+        const messages = [{
+            id: 'welcome', role: 'assistant',
+            content: 'Olá! Eu sou o **BORUS**, assistente virtual da BORAÊ. Como posso ajudar?',
+            timestamp: new Date()
+        }];
+
+        const fuse = new Fuse(colaboradores, {
+            keys: ['nome'], threshold: 0.3, includeScore: true,
+            ignoreLocation: true, minMatchCharLength: 2, findAllMatches: true
+        });
+
+        function findColaborador(query) {
+            const clean = query.toLowerCase().replace(/[?!.,]/g,'').replace(/\b(o|a|de|da|do|dos|das|quem|é|e|qual|setor|departamento)\b/gi,'').trim();
+            if (clean.length < 2) return null;
+            const results = fuse.search(clean);
+            if (results.length > 0 && results[0].score < 0.4) return results[0].item;
+            return colaboradores.find(c => c.nome.toLowerCase().includes(clean)) || null;
+        }
+
+        function normalizeText(text) {
+            return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[?!.,]/g, '').trim();
+        }
+
+        function generateResponse(userMessage) {
+            const msg = normalizeText(userMessage);
+            console.log('Original:', userMessage, '| Normalizado:', msg);
+            
+            if (/o que e a borae|sobre a empresa/.test(msg)) return 'A **BORAÊ** é uma agência de eventos e promoção cultural comprometida em criar experiências que conectem os jovens às expressões culturais. 🎭';
+            if (/missao/.test(msg) && !/visao/.test(msg)) return 'Missão: *"Trazer para os jovens que tenham pouco interesse, acesso ou oportunidade, variados tipos de entretenimento e educação cultural."* 🎯';
+            if (/visao/.test(msg)) return 'Visão: *"Promover cultura, informação e entretenimento para o maior número possível de jovens."* 👁️';
+            if (/valores/.test(msg)) return 'Valores: 🔥 Paixão pela Cultura\n🌍 Valorização da Diversidade\n📚 Educação através da experiência\n✨ Transparência';
+            if (/departamentos|setores|departamento/.test(msg)) return '**6 Departamentos:**\n👥 Recursos Humanos | 📢 Marketing | 🎉 Planejamento/Eventos | 🚀 Desenvolvimento | 💻 TI | 🔍 Pesquisa';
+            if (/diretor|diretora|diretoria/.test(msg)) return '**Diretores:**\n1. Guilherme dos Santos\n2. Gustavo Sartorelli\n\n**Subdiretoras:**\n1. Bárbara Ferreira\n2. Stefany Anne Apaza';
+            if (/evento|farol|boraween|realizados/.test(msg)) return 'Eventos realizados:\n• Farol Santander (2025)\n• Setembro Amarelo (Set 2025)\n• Boraween (Out 2025)\n• Centro Cultural Santo Amaro';
+            if (/contato|instagram|endereco|rua/.test(msg)) return 'Contato: 📸 Instagram: @_boraee\n📍 Rua Alexandre Dumas, 2016 - São Paulo, SP';
+            if (/site|criou|criador|desenvolvedor/.test(msg)) return 'Este site foi criado pelos membros da **BORAÊ** como uma plataforma para compartilhar informações, eventos e conectar-se com a comunidade. 🌐';
+            if (/colaborador|quantos|total|membros/.test(msg)) return 'A BORAÊ conta com **48 colaboradores** distribuídos entre os seis departamentos da empresa! 👥';
+            
+            const col = findColaborador(msg);
+            if (col) return `**${col.nome}** faz parte da equipe de **${col.departamento}** da BORAÊ.`;
+            return 'Desculpe, não entendi direito! Pergunte sobre a BORAÊ, seus departamentos, colaboradores, eventos ou contato. 😊';
+        }
+
+        function renderMessages() {
+            const container = document.getElementById('borus-messages');
+            container.innerHTML = messages.map((m, i) => `
+                <div class="flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} msg-in">
+                    <div class="max-w-xs ${m.role === 'user' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-900'} rounded-lg px-4 py-2 text-sm">
+                        ${m.content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}
+                    </div>
+                </div>
+            `).join('');
+            if (isTyping) container.innerHTML += '<div class="flex justify-start"><div class="flex gap-1"><span class="w-2 h-2 bg-slate-400 rounded-full dot1"></span><span class="w-2 h-2 bg-slate-400 rounded-full dot2"></span><span class="w-2 h-2 bg-slate-400 rounded-full dot3"></span></div></div>';
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function renderSuggestions() {
+            const container = document.getElementById('borus-suggestions');
+            if (!container) return;
+            const suggestions = suggestionPools[currentPool];
+            container.innerHTML = suggestions.map((suggestion, idx) => `
+                <button onclick="handleSuggestion('${suggestion}')" class="chip-in px-3 py-1.5 bg-slate-100 hover:bg-blue-100 text-slate-700 text-sm rounded-full transition-colors border border-slate-200">
+                    ${suggestion}
+                </button>
+            `).join('');
+        }
+
+        function handleSuggestion(text) {
+            const input = document.getElementById('borus-input');
+            if (input) {
+                input.value = text;
+                document.getElementById('borus-send')?.click();
+            }
+        }
+
+        // Event listeners
+        document.getElementById('borus-toggle')?.addEventListener('click', () => {
+            borusOpen = !borusOpen;
+            document.getElementById('borus-popup').classList.toggle('open', borusOpen);
+            if (borusOpen) renderSuggestions();
+        });
+
+        document.getElementById('borus-close')?.addEventListener('click', () => {
+            borusOpen = false;
+            document.getElementById('borus-popup').classList.remove('open');
+        });
+
+        document.getElementById('borus-expand')?.addEventListener('click', () => {
+            borusExpanded = !borusExpanded;
+            document.getElementById('borus-popup').classList.toggle('expanded', borusExpanded);
+            document.getElementById('expand-icon').textContent = borusExpanded ? 'minimize' : 'expand';
+        });
+
+        document.getElementById('borus-send')?.addEventListener('click', () => {
+            const input = document.getElementById('borus-input');
+            if (input.value.trim()) {
+                messages.push({ id: Date.now(), role: 'user', content: input.value, timestamp: new Date() });
+                isTyping = true;
+                renderMessages();
+                setTimeout(() => {
+                    isTyping = false;
+                    messages.push({ id: Date.now(), role: 'assistant', content: generateResponse(input.value), timestamp: new Date() });
+                    renderMessages();
+                    currentPool = (currentPool + 1) % suggestionPools.length;
+                    renderSuggestions();
+                    lucide.createIcons();
+                }, 600);
+                input.value = '';
+            }
+        });
+
+        document.getElementById('borus-input')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') document.getElementById('borus-send')?.click();
+        });
+
+        renderMessages();
+        renderSuggestions();
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,504 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BORAÊ Insights - Analytics em tempo real</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/global-styles.css">
+</head>
+<body>
+    <!-- LGPD Modal -->
+    <div id="lgpdModal" class="modal active">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+
+            <h2 class="modal-title">Proteção de Dados - LGPD</h2>
+
+            <p class="modal-text">
+                Os dados apresentados neste painel são tratados com total confidencialidade e em conformidade com a Lei
+                Geral de Proteção de Dados (LGPD).
+            </p>
+
+            <div class="modal-grid">
+                <div class="modal-item">
+                    <div class="modal-item-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <p class="modal-item-text">Dados Criptografados</p>
+                </div>
+                <div class="modal-item">
+                    <div class="modal-item-icon">
+                        <i class="fas fa-file-check"></i>
+                    </div>
+                    <p class="modal-item-text">Acesso Restrito</p>
+                </div>
+                <div class="modal-item">
+                    <div class="modal-item-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <p class="modal-item-text">Sigilo Total</p>
+                </div>
+                <div class="modal-item">
+                    <div class="modal-item-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <p class="modal-item-text">Uso Interno</p>
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="closeLGPDModal()">Entendi e Aceito</button>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <button onclick="goBack()" style="background: none; border: none; cursor: pointer; color: #94a3b8; font-size: 20px; padding: 8px; border-radius: 6px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#1e293b'; this.style.color='white'" onmouseout="this.style.backgroundColor='none'; this.style.color='#94a3b8'">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div class="header-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="header-info">
+                        <h1>BORAÊ Insights</h1>
+                        <p>Analytics em tempo real</p>
+                    </div>
+                </div>
+                <div class="online-badge">
+                    <span class="online-dot"></span>
+                    <span>15 online</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="container main-content">
+            <!-- Stats Cards -->
+            <div class="grid-2">
+                <div class="stat-card blue">
+                    <div class="icon"><i class="fas fa-eye"></i></div>
+                    <div class="value">1.2K</div>
+                    <div class="label">Visualizações</div>
+                </div>
+
+                <div class="stat-card emerald">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <div class="value">487</div>
+                    <div class="label">Visitantes</div>
+                </div>
+
+                <div class="stat-card amber">
+                    <div class="icon"><i class="fas fa-mouse"></i></div>
+                    <div class="value">3.2K</div>
+                    <div class="label">Cliques</div>
+                </div>
+
+                <div class="stat-card pink">
+                    <div class="icon"><i class="fas fa-heart"></i></div>
+                    <div class="value">245</div>
+                    <div class="label">Curtidas</div>
+                </div>
+
+                <div class="stat-card purple">
+                    <div class="icon"><i class="fas fa-comments"></i></div>
+                    <div class="value">89</div>
+                    <div class="label">Comentários</div>
+                </div>
+
+                <div class="stat-card cyan">
+                    <div class="icon"><i class="fas fa-robot"></i></div>
+                    <div class="value">156</div>
+                    <div class="label">BORUS</div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs" role="tablist">
+                <button class="tab active" onclick="switchTab(event, 'overview')" role="tab">
+                    <i class="fas fa-chart-line"></i>
+                    Visão Geral
+                </button>
+                <button class="tab" onclick="switchTab(event, 'engagement')" role="tab">
+                    <i class="fas fa-heart"></i>
+                    Engajamento
+                </button>
+                <button class="tab" onclick="switchTab(event, 'comments')" role="tab">
+                    <i class="fas fa-comments"></i>
+                    Comentários
+                </button>
+                <button class="tab" onclick="switchTab(event, 'borus')" role="tab">
+                    <i class="fas fa-robot"></i>
+                    BORUS
+                </button>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <div class="grid-2-lg space-y-6">
+                    <!-- Daily Views Chart -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-chart-area" style="color: #3b82f6;"></i>
+                                Visualizações (7 dias)
+                            </h2>
+                        </div>
+                        <div class="chart-placeholder">
+                            📊 Gráfico de Área (Visualizações)
+                        </div>
+                    </div>
+
+                    <!-- Devices Chart -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-desktop" style="color: #10b981;"></i>
+                                Dispositivos
+                            </h2>
+                        </div>
+                        <div class="chart-placeholder">
+                            📈 Gráfico Pizza (Dispositivos)
+                        </div>
+                        <div style="margin-top: 16px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 12px; height: 12px; background-color: #93c5fd; border-radius: 50%;"></div>
+                                <span style="font-size: 14px; color: #cbd5e1;">Desktop (65%)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 12px; height: 12px; background-color: #86efac; border-radius: 50%;"></div>
+                                <span style="font-size: 14px; color: #cbd5e1;">Mobile (28%)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 12px; height: 12px; background-color: #fde047; border-radius: 50%;"></div>
+                                <span style="font-size: 14px; color: #cbd5e1;">Tablet (7%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Pages -->
+                <div class="card space-y-6">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-file-text" style="color: #8b5cf6;"></i>
+                            Páginas Mais Visitadas
+                        </h2>
+                    </div>
+                    <div class="space-y-3">
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background-color: #0f172a; border-radius: 8px; border: 1px solid #334155;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="width: 24px; height: 24px; background-color: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; font-weight: 600;">1</span>
+                                <span style="color: #cbd5e1;">/dashboard</span>
+                            </div>
+                            <span style="color: #cbd5e1; font-weight: 500;">456 views</span>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background-color: #0f172a; border-radius: 8px; border: 1px solid #334155;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="width: 24px; height: 24px; background-color: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; font-weight: 600;">2</span>
+                                <span style="color: #cbd5e1;">/eventos</span>
+                            </div>
+                            <span style="color: #cbd5e1; font-weight: 500;">234 views</span>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background-color: #0f172a; border-radius: 8px; border: 1px solid #334155;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="width: 24px; height: 24px; background-color: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; font-weight: 600;">3</span>
+                            </div>
+                            <span style="color: #cbd5e1; font-weight: 500;">189 views</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Engagement Tab -->
+            <div id="engagement" class="tab-content">
+                <div class="grid-4 space-y-6">
+                    <div class="card" style="text-align: center;">
+                        <i class="fas fa-heart" style="color: #ec4899; font-size: 32px; margin-bottom: 12px; display: block;"></i>
+                        <p style="font-size: 32px; font-weight: bold; color: white; margin-bottom: 8px;">128</p>
+                        <p style="font-size: 14px; color: #94a3b8;">Curtidas em Avisos</p>
+                    </div>
+
+                    <div class="card" style="text-align: center;">
+                        <i class="fas fa-heart" style="color: #f43f5e; font-size: 32px; margin-bottom: 12px; display: block;"></i>
+                        <p style="font-size: 32px; font-weight: bold; color: white; margin-bottom: 8px;">117</p>
+                        <p style="font-size: 14px; color: #94a3b8;">Curtidas em Eventos</p>
+                    </div>
+
+                    <div class="card" style="text-align: center;">
+                        <i class="fas fa-comments" style="color: #a855f7; font-size: 32px; margin-bottom: 12px; display: block;"></i>
+                        <p style="font-size: 32px; font-weight: bold; color: white; margin-bottom: 8px;">45</p>
+                        <p style="font-size: 14px; color: #94a3b8;">Comentários em Avisos</p>
+                    </div>
+
+                    <div class="card" style="text-align: center;">
+                        <i class="fas fa-comments" style="color: #8b5cf6; font-size: 32px; margin-bottom: 12px; display: block;"></i>
+                        <p style="font-size: 32px; font-weight: bold; color: white; margin-bottom: 8px;">44</p>
+                        <p style="font-size: 14px; color: #94a3b8;">Comentários em Eventos</p>
+                    </div>
+                </div>
+
+                <!-- Recent Likes -->
+                <div class="card space-y-6">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-heart" style="color: #ec4899;"></i>
+                            Curtidas Recentes
+                        </h2>
+                    </div>
+                    <div class="scrollable space-y-2">
+                        <div class="like-item">
+                            <div class="like-user">
+                                <i class="like-icon fas fa-heart"></i>
+                                <div class="like-info">
+                                    <span class="like-name">João Silva</span>
+                                    <span class="badge">Aviso #12</span>
+                                </div>
+                            </div>
+                            <span style="font-size: 12px; color: #64748b;">13/04/2026 14:30</span>
+                        </div>
+                        <div class="like-item">
+                            <div class="like-user">
+                                <i class="like-icon fas fa-heart"></i>
+                                <div class="like-info">
+                                    <span class="like-name">Maria Santos</span>
+                                    <span class="badge">Evento #5</span>
+                                </div>
+                            </div>
+                            <span style="font-size: 12px; color: #64748b;">13/04/2026 13:45</span>
+                        </div>
+                        <div class="like-item">
+                            <div class="like-user">
+                                <i class="like-icon fas fa-heart"></i>
+                                <div class="like-info">
+                                    <span class="like-name">Anônimo</span>
+                                    <span class="badge">Aviso #8</span>
+                                </div>
+                            </div>
+                            <span style="font-size: 12px; color: #64748b;">13/04/2026 12:15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments Tab -->
+            <div id="comments" class="tab-content">
+                <div class="grid-2-lg space-y-6">
+                    <!-- Avisos Comments -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-comments" style="color: #a855f7;"></i>
+                                Comentários em Avisos
+                            </h2>
+                        </div>
+                        <div class="scrollable space-y-3">
+                            <div class="comment-item">
+                                <div class="comment-header">
+                                    <div>
+                                        <p class="comment-author">Pedro Oliveira</p>
+                                        <p class="comment-date">13/04/2026 10:30:00</p>
+                                    </div>
+                                </div>
+                                <p class="comment-content">Muito importante essa informação. Obrigado por compartilhar!</p>
+                            </div>
+                            <div class="comment-item">
+                                <div class="comment-header">
+                                    <div>
+                                        <p class="comment-author">Ana Costa</p>
+                                        <p class="comment-date">13/04/2026 09:15:00</p>
+                                    </div>
+                                </div>
+                                <p class="comment-content">Concordo totalmente com essa posição.</p>
+                            </div>
+                            <div class="comment-item">
+                                <div class="comment-header">
+                                    <div>
+                                        <p class="comment-author">Carlos Mendes</p>
+                                        <p class="comment-date">12/04/2026 16:45:00</p>
+                                    </div>
+                                </div>
+                                <p class="comment-content">Quando será a próxima reunião sobre esse assunto?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Comments -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-calendar" style="color: #8b5cf6;"></i>
+                                Comentários em Eventos
+                            </h2>
+                        </div>
+                        <div class="scrollable space-y-3">
+                            <div class="comment-item">
+                                <div class="comment-header">
+                                    <div>
+                                        <p class="comment-author">Lucas Ferreira</p>
+                                        <p class="comment-date">13/04/2026 11:20:00</p>
+                                    </div>
+                                </div>
+                                <p class="comment-content">Evento incrível! Não vejo a hora para o próximo.</p>
+                            </div>
+                            <div class="comment-item">
+                                <div class="comment-header">
+                                    <div>
+                                        <p class="comment-author">Beatriz Alves</p>
+                                        <p class="comment-date">13/04/2026 08:00:00</p>
+                                    </div>
+                                </div>
+                                <p class="comment-content">Qual é o local do evento? Posso participar remotamente?</p>
+                            </div>
+                            <div class="comment-item">
+                                <div class="comment-header">
+                                    <div>
+                                        <p class="comment-author">Rodrigo Torres</p>
+                                        <p class="comment-date">12/04/2026 18:30:00</p>
+                                    </div>
+                                </div>
+                                <p class="comment-content">Muito bom mesmo! Parabéns à equipe organizadora.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BORUS Tab -->
+            <div id="borus" class="tab-content">
+                <div class="grid-2-lg space-y-6">
+                    <!-- BORUS Stats -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-robot" style="color: #06b6d4;"></i>
+                                Estatísticas do BORUS
+                            </h2>
+                        </div>
+                        <div class="grid_2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div style="padding: 16px; background-color: #0f172a; border-radius: 8px; text-align: center; border: 1px solid #334155;">
+                                <p style="font-size: 32px; font-weight: bold; color: white;">156</p>
+                                <p style="font-size: 14px; color: #cbd5e1;">Total de Interações</p>
+                            </div>
+                            <div style="padding: 16px; background-color: #0f172a; border-radius: 8px; text-align: center; border: 1px solid #334155;">
+                                <p style="font-size: 32px; font-weight: bold; color: white;">42</p>
+                                <p style="font-size: 14px; color: #cbd5e1;">Perguntas Únicas</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Most Frequent Questions -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-comments" style="color: #a855f7;"></i>
+                                Perguntas Mais Frequentes
+                            </h2>
+                        </div>
+                        <div class="scrollable space-y-2">
+                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px; background-color: #0f172a; border-radius: 6px; border: 1px solid #334155;">
+                                <span style="font-size: 14px; color: #cbd5e1; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Como acessar o dashboard?</span>
+                                <span class="badge" style="margin-left: 8px;">15x</span>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px; background-color: #0f172a; border-radius: 6px; border: 1px solid #334155;">
+                                <span style="font-size: 14px; color: #cbd5e1; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Qual é a próxima data de evento?</span>
+                                <span class="badge" style="margin-left: 8px;">12x</span>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px; background-color: #0f172a; border-radius: 6px; border: 1px solid #334155;">
+                                <span style="font-size: 14px; color: #cbd5e1; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Como enviar um aviso?</span>
+                                <span class="badge" style="margin-left: 8px;">9x</span>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px; background-color: #0f172a; border-radius: 6px; border: 1px solid #334155;">
+                                <span style="font-size: 14px; color: #cbd5e1; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Quem são os administradores?</span>
+                                <span class="badge" style="margin-left: 8px;">6x</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BORUS Interactions History -->
+                <div class="card space-y-6">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-clock" style="color: #06b6d4;"></i>
+                            Histórico de Perguntas ao BORUS
+                        </h2>
+                    </div>
+                    <div class="scrollable space-y-2">
+                        <div style="padding: 16px; background-color: #0f172a; border-radius: 8px; border: 1px solid #334155;">
+                            <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px;">
+                                <div style="flex: 1;">
+                                    <p style="color: white;">Como faço para resetar minha senha?</p>
+                                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+                                        <span class="badge">geral</span>
+                                        <span class="badge badge-success">Útil</span>
+                                    </div>
+                                </div>
+                                <span style="font-size: 12px; color: #64748b;">13/04/2026 14:20:00</span>
+                            </div>
+                        </div>
+                        <div style="padding: 16px; background-color: #0f172a; border-radius: 8px; border: 1px solid #334155;">
+                            <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px;">
+                                <div style="flex: 1;">
+                                    <p style="color: white;">Quantos eventos estão agendados?</p>
+                                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+                                        <span class="badge">evento</span>
+                                        <span class="badge badge-success">Útil</span>
+                                    </div>
+                                </div>
+                                <span style="font-size: 12px; color: #64748b;">13/04/2026 12:45:00</span>
+                            </div>
+                        </div>
+                        <div style="padding: 16px; background-color: #0f172a; border-radius: 8px; border: 1px solid #334155;">
+                            <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px;">
+                                <div style="flex: 1;">
+                                    <p style="color: white;">Como entro em contato com o suporte?</p>
+                                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+                                        <span class="badge">suporte</span>
+                                        <span class="badge badge-danger">Não útil</span>
+                                    </div>
+                                </div>
+                                <span style="font-size: 12px; color: #64748b;">13/04/2026 10:30:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function closeLGPDModal() {
+            const modal = document.getElementById('lgpdModal');
+            modal.classList.remove('active');
+        }
+
+        function switchTab(event, tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected tab
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+
+            // Add active class to clicked button
+            event.target.closest('.tab').classList.add('active');
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
+

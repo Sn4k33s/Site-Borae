@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contato – BORAÊ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+  <link rel="stylesheet" href="../../styles/global-styles.css">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 font-sans">
+
+  <!-- ============================================================
+       ✅ PÁGINA DE CONTATO - BORAÊ
+       ============================================================
+       Página completa para contatos e comunicação
+       
+       Principais mudanças:
+       - Logo: logo-borae.jpg → nova-logo-borae.png ✅
+       - Tamanho da logo: 240px (altura do header)
+       - Navegação: 8 links padronizados com ícones (Font Awesome)
+       - BORUS Chatbot: Sistema de chat interativo em rodapé
+       
+       Estrutura da página:
+       1. Header com logo e navegação
+       2. Seção de contato (formulário principal)
+       3. Links de redes sociais
+       4. BORUS Chat Widget (rodapé flutuante)
+       5. Footer com informações
+       ============================================================ -->
+
+  <!-- ============================================================
+       HEADER & NAVIGATION
+       ============================================================ -->
+  <header class="site-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="../index.html" class="flex items-center">
+          <img src="../../public/nova-logo-borae.png" alt="BORAÊ Logo"
+               style="height: 150px; width: auto;"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+          <span style="display:none" class="text-xl font-bold text-stone-800 tracking-tight">BORAÊ</span>
+        </a>
+        <nav class="hidden lg:flex items-center gap-1">
+          <a href="../index.html"       class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><i data-lucide="home" class="w-4 h-4"></i>Início</a>
+          <a href="../organograma/organograma.html" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><i data-lucide="users" class="w-4 h-4"></i>Organograma</a>
+          <a href="../dashboard/dashboard.html"   class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><i data-lucide="layout-dashboard" class="w-4 h-4"></i>Dashboard</a>
+          <a href="../eventos/eventos.html"     class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><i data-lucide="calendar" class="w-4 h-4"></i>Eventos</a>            <a href="../tarefas/tarefas.html"     class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><i data-lucide="check-square" class="w-4 h-4"></i>Tarefas</a>
+          <a href="../sobre/sobre.html"       class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all"><i data-lucide="info" class="w-4 h-4"></i>Sobre</a>
+          <a href="../contato/contato.html"     class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-stone-800 bg-stone-100 transition-all"><i data-lucide="mail" class="w-4 h-4"></i>Contato</a>
+        </nav>
+        <button id="mobile-toggle" class="lg:hidden p-2 text-white/85 hover:text-white hover:bg-white/10 rounded-md transition-all">
+          <i data-lucide="menu" class="w-6 h-6" id="icon-menu"></i>
+          <i data-lucide="x"   class="w-6 h-6 hidden" id="icon-x"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div id="mobile-menu" class="lg:hidden bg-white border-b border-stone-100 fixed w-full z-40 top-16">
+    <div class="flex flex-col gap-1 px-4 py-4">
+      <a href="../index.html"       class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10"><i data-lucide="home" class="w-4 h-4"></i>Início</a>
+      <a href="../organograma/organograma.html" class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10"><i data-lucide="users" class="w-4 h-4"></i>Organograma</a>
+      <a href="../dashboard/dashboard.html"   class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10"><i data-lucide="layout-dashboard" class="w-4 h-4"></i>Dashboard</a>
+      <a href="../eventos/eventos.html"     class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10"><i data-lucide="calendar" class="w-4 h-4"></i>Eventos</a>
+      <a href="../sobre/sobre.html"       class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10"><i data-lucide="info" class="w-4 h-4"></i>Sobre</a>
+      <a href="../contato/contato.html"     class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-stone-800 bg-stone-100"><i data-lucide="mail" class="w-4 h-4"></i>Contato</a>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MAIN
+  ============================================================ -->
+  <!-- ============================================================
+       MAIN CONTENT - CONTACT SECTION
+       ============================================================
+       
+       Seções principais:
+       1. Hero section - Título e subtítulo explicativos
+       2. Contact form - Formulário com 5 campos (Nome, Email, Assunto, Mensagem)
+       3. Social links - Links para redes sociais
+       4. BORUS Chat Widget - Chat assistente virtual (flutuante)
+       
+       Mudanças recentes:
+       ✅ Logo: logo-borae.jpg → nova-logo-borae.png
+       ✅ Tamanho da logo: 240px (header)
+       ✅ Navegação: 8 links com Lucide icons
+       ✅ BORUS: Sistema de chat interativo 24/7
+       
+       ============================================================ -->
+  <main class="py-16 lg:py-24 px-4 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Hero -->
+      <div class="text-center mb-16 fade-up">
+        <h1 class="text-4xl lg:text-5xl font-bold text-slate-800 mb-4">Entre em Contato</h1>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Tem alguma dúvida ou sugestão? Estamos aqui para ajudar. Use o formulário abaixo ou converse com nosso
+          assistente virtual BORUS.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+
+        <!-- Contact form -->
+        <div class="fade-up-delay">
+          <div class="border border-slate-200 shadow-lg rounded-xl bg-white">
+            <div class="p-8">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center">
+                  <i data-lucide="mail" class="w-6 h-6 text-slate-600"></i>
+                </div>
+                <div>
+                  <h2 class="text-xl font-semibold text-slate-800">Envie uma Mensagem</h2>
+                  <p class="text-sm text-slate-500">Responderemos o mais breve possível</p>
+                </div>
+              </div>
+
+              <form id="contact-form" class="space-y-5">
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Nome</label>
+                    <input id="f-nome" type="text" placeholder="Seu nome" required
+                      class="w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-slate-400 transition-all" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">E-mail</label>
+                    <input id="f-email" type="email" placeholder="seu@email.com" required
+                      class="w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-slate-400 transition-all" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-2">Assunto</label>
+                  <input id="f-assunto" type="text" placeholder="Sobre o que deseja falar?" required
+                    class="w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-slate-400 transition-all" />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-2">Mensagem</label>
+                  <textarea id="f-mensagem" rows="5" placeholder="Digite sua mensagem..." required
+                    class="w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-slate-400 resize-none transition-all"></textarea>
+                </div>
+                <button id="submit-btn" type="submit"
+                  class="w-full flex items-center justify-center gap-2 py-3 bg-slate-700 hover:bg-slate-800 text-white font-medium rounded-md transition-colors text-sm">
+                  <i data-lucide="send" class="w-5 h-5"></i>
+                  <span id="submit-label">Enviar Mensagem</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info cards -->
+        <div class="space-y-6 fade-up-delay2">
+          <!-- Instagram -->
+          <div class="border border-slate-200 shadow-lg rounded-xl bg-white">
+            <div class="p-6">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shrink-0">
+                  <i data-lucide="instagram" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-slate-800">Siga-nos no Instagram</h3>
+                  <a href="https://www.instagram.com/_boraee?igsh=bDRubHpjZGR2OWo0" target="_blank" rel="noopener noreferrer"
+                     class="text-slate-500 hover:text-purple-600 transition-colors text-sm">@_boraee</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Numbers -->
+          <div class="border border-slate-200 shadow-lg rounded-xl bg-white">
+            <div class="p-6">
+              <h3 class="font-semibold text-slate-800 mb-4">BORAÊ em Números</h3>
+              <div class="grid grid-cols-3 gap-4 text-center">
+                <div>
+                  <p class="text-3xl font-bold text-slate-700">48</p>
+                  <p class="text-xs text-slate-500">Colaboradores</p>
+                </div>
+                <div>
+                  <p class="text-3xl font-bold text-slate-700">6</p>
+                  <p class="text-xs text-slate-500">Departamentos</p>
+                </div>
+                <div>
+                  <p class="text-3xl font-bold text-slate-700">4+</p>
+                  <p class="text-xs text-slate-500">Eventos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="py-8" style="background: linear-gradient(to top, #2209a0 0%, #4d19e6 100%)">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <img src="../../public/nova-logo-borae.png" alt="BORAÊ Logo" style="height: 100px; width: auto;"
+             onerror="this.style.display='none';" />
+        <span class="text-white/70 text-sm">© 2025 BORAÊ. Todos os direitos reservados.</span>
+      </div>
+      <div class="flex gap-6">
+        <a href="../sobre/sobre.html"   class="text-white/70 hover:text-white text-sm transition-colors">Sobre</a>
+        <a href="../contato/contato.html" class="text-white/70 hover:text-white text-sm transition-colors">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       BORUS FLOATING BUTTON
+  ============================================================ -->
+  <button id="borus-toggle"
+    class="borus-btn fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-slate-800 to-slate-900 rounded-full shadow-lg flex items-center justify-center text-white">
+    <i data-lucide="bot" class="w-6 h-6"></i>
+    <span class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></span>
+  </button>
+
+  <!-- ============================================================
+       BORUS CHAT POPUP
+  ============================================================ -->
+  <div id="borus-popup"
+  +
+    class="fixed z-50 bottom-24 right-6 w-[calc(100vw-3rem)] max-w-md"
+    style="height:600px; max-height:calc(100vh - 6rem);">
+    <div class="h-full flex flex-col shadow-2xl border border-slate-200 rounded-xl overflow-hidden bg-white">
+
+      <!-- Chat header -->
+      <div class="bg-gradient-to-r from-slate-700 to-slate-900 text-white p-4 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+              <i data-lucide="bot" class="w-6 h-6"></i>
+            </div>
+            <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-slate-800"></span>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg">BORUS</h3>
+            <p class="text-xs text-slate-300">Assistente BORAÊ</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="borus-expand"
+            class="p-2 rounded-md text-white hover:bg-white/20 transition-colors" title="Expandir">
+            <i data-lucide="expand" class="w-4 h-4" id="expand-icon"></i>
+          </button>
+          <button id="borus-close"
+            class="p-2 rounded-md text-white hover:bg-white/20 transition-colors" title="Fechar">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div id="borus-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50"></div>
+
+      <!-- Suggestions -->
+      <div class="px-4 py-3 bg-white border-t border-slate-100 shrink-0">
+        <div id="borus-suggestions" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- Input -->
+      <div class="p-4 bg-white border-t border-slate-200 shrink-0">
+        <div class="flex gap-2">
+          <input id="borus-input" type="text" placeholder="Digite sua pergunta..."
+            class="flex-1 px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-slate-400 transition-all" />
+          <button id="borus-send"
+            class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded-md transition-colors flex items-center justify-center">
+            <i data-lucide="send" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SCRIPT
+  ============================================================ -->
+  <script>
+  // ─── Mobile menu ──────────────────────────────────────────────
+  document.getElementById('mobile-toggle').addEventListener('click', () => {
+    const open = document.getElementById('mobile-menu').classList.toggle('open')
+    document.getElementById('icon-menu').classList.toggle('hidden', open)
+    document.getElementById('icon-x').classList.toggle('hidden', !open)
+  })
+
+  // ─── Contact form ──────────────────────────────────────────────
+  document.getElementById('contact-form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const btn   = document.getElementById('submit-btn')
+    const label = document.getElementById('submit-label')
+    btn.disabled = true
+    btn.classList.replace('bg-slate-700','bg-slate-400')
+    label.textContent = 'Enviando...'
+
+    setTimeout(() => {
+      label.textContent = '✓ Enviado com sucesso!'
+      btn.classList.replace('bg-slate-400','bg-green-600')
+      document.getElementById('f-nome').value = ''
+      document.getElementById('f-email').value = ''
+      document.getElementById('f-assunto').value = ''
+      document.getElementById('f-mensagem').value = ''
+      setTimeout(() => {
+        label.textContent = 'Enviar Mensagem'
+        btn.classList.replace('bg-green-600','bg-slate-700')
+        btn.disabled = false
+      }, 3000)
+    }, 1500)
+  })
+
+  // ─── BORUS Data ────────────────────────────────────────────────
+  const colaboradores = [
+    { nome:"Guilherme dos Santos",       departamento:"Diretoria",             cargo:"Diretor" },
+    { nome:"Gustavo Sartorelli",          departamento:"Diretoria",             cargo:"Diretor" },
+    { nome:"Bárbara Ferreira",            departamento:"Subdiretoria",          cargo:"Subdiretora" },
+    { nome:"Stefany Anne Apaza",          departamento:"Subdiretoria",          cargo:"Subdiretora" },
+    { nome:"Giulia Ferro",                departamento:"Marketing",             cargo:"Membro" },
+    { nome:"Clarice de Paula",            departamento:"Marketing",             cargo:"Membro" },
+    { nome:"Giovanna Camilo",             departamento:"Marketing",             cargo:"Membro" },
+    { nome:"Giovanna dos Santos",         departamento:"Marketing",             cargo:"Membro" },
+    { nome:"Maria Clara Kirchhof",        departamento:"Marketing",             cargo:"Membro" },
+    { nome:"Maria Eduarda Martins",       departamento:"Marketing",             cargo:"Membro" },
+    { nome:"Maria Vitoria Rocha",         departamento:"Marketing",             cargo:"Membro" },
+    { nome:"José Elias Gomes",            departamento:"Tecnologia da Informação", cargo:"Membro" },
+    { nome:"Diego Silva de Oliveira",     departamento:"Tecnologia da Informação", cargo:"Membro" },
+    { nome:"Luan Alves da Silva",         departamento:"Tecnologia da Informação", cargo:"Membro" },
+    { nome:"Pedro Henrique Dias",         departamento:"Tecnologia da Informação", cargo:"Membro" },
+    { nome:"Filipe Ferreira de Araújo",   departamento:"Tecnologia da Informação", cargo:"Membro" },
+    { nome:"Layne Rodrigues Silva",       departamento:"Recursos Humanos",      cargo:"Membro" },
+    { nome:"Mariana Favorin Cruz",        departamento:"Recursos Humanos",      cargo:"Membro" },
+    { nome:"Maria Eduarda Barbosa",       departamento:"Recursos Humanos",      cargo:"Membro" },
+    { nome:"Maria Julia Goes",            departamento:"Recursos Humanos",      cargo:"Membro" },
+    { nome:"Eliane Araújo Silva",         departamento:"Recursos Humanos",      cargo:"Membro" },
+    { nome:"Gustavo Bispo Viana",         departamento:"Recursos Humanos",      cargo:"Membro" },
+    { nome:"Willyan Rodrigues",           departamento:"Recursos Humanos",      cargo:"Membro" },
+    { nome:"Cléo Christine Silva",        departamento:"Desenvolvimento",       cargo:"Membro" },
+    { nome:"Fabio Andrade Irias",         departamento:"Desenvolvimento",       cargo:"Membro" },
+    { nome:"Luana da Silva",              departamento:"Desenvolvimento",       cargo:"Membro" },
+    { nome:"Lucas Pereira Santos",        departamento:"Desenvolvimento",       cargo:"Membro" },
+    { nome:"Maria Eduarda de Oliveira",   departamento:"Desenvolvimento",       cargo:"Membro" },
+    { nome:"Pablo Ackillys",              departamento:"Desenvolvimento",       cargo:"Membro" },
+    { nome:"Rafaela Matos",               departamento:"Desenvolvimento",       cargo:"Membro" },
+    { nome:"Rodrigo Souto",               departamento:"Desenvolvimento",       cargo:"Membro" },
+    { nome:"Sabrina Ramos Alves",         departamento:"Desenvolvimento",       cargo:"Membro" },
+    { nome:"Thifany Nicoly Gama",         departamento:"Desenvolvimento",       cargo:"Membro" },
+    { nome:"Gabrielle Alves de Oliveira", departamento:"Planejamento/Eventos",  cargo:"Membro" },
+    { nome:"Gabrielly Evangelista",       departamento:"Planejamento/Eventos",  cargo:"Membro" },
+    { nome:"Icaro Moreira Jorge",         departamento:"Planejamento/Eventos",  cargo:"Membro" },
+    { nome:"Luisa Holanda Alves",         departamento:"Planejamento/Eventos",  cargo:"Membro" },
+    { nome:"Richard Machado",             departamento:"Planejamento/Eventos",  cargo:"Membro" },
+    { nome:"Sofia Alves Sousa",           departamento:"Planejamento/Eventos",  cargo:"Membro" },
+    { nome:"Vinicius Neri Brandão",       departamento:"Planejamento/Eventos",  cargo:"Membro" },
+    { nome:"Karoline Xavier",             departamento:"Planejamento/Eventos",  cargo:"Membro" },
+    { nome:"Ana Clara Pereira da Silva",  departamento:"Pesquisa",             cargo:"Membro" },
+    { nome:"Iago Lima Flores",            departamento:"Pesquisa",             cargo:"Membro" },
+    { nome:"Isabelly Alves",              departamento:"Pesquisa",             cargo:"Membro" },
+    { nome:"Isabelly Pinheiro",           departamento:"Pesquisa",             cargo:"Membro" },
+    { nome:"Willian Marques Barbosa",     departamento:"Pesquisa",             cargo:"Membro" },
+    { nome:"Yuri Nascimento",             departamento:"Pesquisa",             cargo:"Membro" },
+    { nome:"Mariana Gonçalves",           departamento:"Pesquisa",             cargo:"Membro" },
+  ]
+
+  const eventosRealizados = [
+    { nome:"Visita ao Farol Santander",              data:"2025",           descricao:"Visita cultural ao icônico Farol Santander em São Paulo, incluindo exposições de arte contemporânea e vista panorâmica da cidade." },
+    { nome:"Setembro Amarelo - Jogo de Conscientização", data:"Setembro 2025", descricao:"Evento de conscientização sobre saúde mental com atividades interativas e dinâmicas de grupo." },
+    { nome:"Boraween",                               data:"Outubro 2025",   descricao:"Celebração temática de Halloween com toda a equipe, incluindo fantasias e atividades especiais." },
+    { nome:"Visita ao Centro Cultural Santo Amaro",  data:"2025",           descricao:"Exploração de espaços culturais na região de Santo Amaro." },
+  ]
+
+  const suggestionPools = [
+    ["O que é a BORAÊ?","Quais são os departamentos?","Quem são os diretores?","Qual a missão da empresa?"],
+    ["Quem criou este site?","Quais eventos foram realizados?","Quantos colaboradores tem?","Quais os valores da BORAÊ?"],
+    ["O que significa BORUS?","Quem trabalha no Marketing?","Qual o diferencial da empresa?","Onde fica a BORAÊ?"],
+    ["Quem são as subdiretoras?","Quem trabalha no RH?","O que foi o Boraween?","Qual a visão da BORAÊ?"],
+    ["Quais as metas da empresa?","O que faz o setor de Pesquisa?","Quem trabalha em TI?","Como entrar em contato?"],
+    ["Quem é o Filipe Ferreira?","O que foi o Setembro Amarelo?","Quem trabalha em Desenvolvimento?","Qual o Instagram?"],
+    ["Quem é a Giulia Ferro?","O que faz o setor de TI?","Quem é o Diego Silva?","O que foi o Farol Santander?"],
+    ["Quem trabalha em Planejamento?","Quem é a Maria Eduarda Martins?","Quantos setores existem?","Quem é o Gustavo Bispo?"],
+    ["Quem é a Stefany Anne?","Quem é o José Elias?","O que faz o Marketing?","Quem é a Luana da Silva?"],
+    ["Quem é o Pablo Ackillys?","Quem é a Isabelly Alves?","Quem é o Yuri Nascimento?","Quem é a Sofia Alves?"],
+  ]
+
+  // ─── BORUS State ───────────────────────────────────────────────
+  let borusOpen       = false
+  let borusExpanded   = false
+  let currentPool     = 0
+  let isTyping        = false
+  const feedbackGiven = new Set()
+  let copiedId        = null
+  const messages      = [{
+    id: 'welcome', role: 'assistant',
+    content: 'Olá! Eu sou o **BORUS** (Bot for Organizational Research & Unified Support), o assistente virtual oficial da BORAÊ. Estou aqui para responder todas as suas dúvidas sobre nossa empresa, colaboradores, departamentos, eventos e muito mais. Como posso ajudar você hoje?',
+    timestamp: new Date()
+  }]
+
+  // ─── Fuse.js ───────────────────────────────────────────────────
+  const fuse = new Fuse(colaboradores, {
+    keys: ['nome'], threshold: 0.3, includeScore: true,
+    ignoreLocation: true, minMatchCharLength: 2, findAllMatches: true
+  })
+
+  function findColaborador(query) {
+    const clean = query.toLowerCase()
+      .replace(/[?!.,]/g,'')
+      .replace(/\b(o|a|de|da|do|dos|das|quem|é|e|qual|setor|departamento|área|trabalha|fica|está)\b/gi,'')
+      .trim()
+    if (clean.length < 2) return null
+    const results = fuse.search(clean)
+    if (results.length > 0 && results[0].score < 0.4) return results[0].item
+    return colaboradores.find(c =>
+      c.nome.toLowerCase().includes(clean) || clean.includes(c.nome.toLowerCase().split(' ')[0])
+    ) || null
+  }
+
+  // ─── Response generator (direct port from TSX) ─────────────────
+  function generateResponse(userMessage) {
+    const msg = userMessage.toLowerCase().trim()
+
+    const offTopic = [/clima|tempo|previsão/i,/futebol|esporte/i,/receita|comida|cozinha/i,/filme|série|netflix/i,/política|eleição|presidente/i,/piada/i,/calcul/i,/traduz/i]
+    for (const p of offTopic) {
+      if (p.test(msg)) return 'Desculpe, eu sou o **BORUS**, um assistente focado exclusivamente na **BORAÊ**. Posso responder apenas perguntas sobre nossa empresa, colaboradores, departamentos, eventos e projetos. Por favor, pergunte algo relacionado à BORAÊ! 😊'
+    }
+
+    if (/quem criou|quem desenvolveu|quem fez|desenvolvedor|criador/.test(msg) || (msg.includes('site') && /quem|criou|fez/.test(msg)) || (msg.includes('borus') && /criou|desenvolveu|fez|quem/.test(msg)))
+      return 'Fui desenvolvido por **Filipe Ferreira de Araújo**, que faz parte da equipe de Tecnologia da Informação da BORAÊ. Ele não só deu vida ao BORUS, mas também criou todo este site do zero, implementando cada funcionalidade, design e interação que você vê aqui. Um verdadeiro trabalho de dedicação, criatividade e expertise técnica! 🚀'
+
+    if (/significa borus|significado|o que é borus|borus significa|nome borus/.test(msg))
+      return '**BORUS** significa **Bot for Organizational Research & Unified Support**.\n\nFui criado para ser o assistente virtual oficial da BORAÊ, oferecendo informações completas e precisas sobre a empresa, seus colaboradores, departamentos, eventos e muito mais. 🤖'
+
+    // Busca por pessoa via padrões
+    const pessoaPatterns = [
+      /quem\s+[eé]\s+(?:o|a)?\s*(.+)/i,
+      /(?:de\s+)?(?:qual|que)\s+(?:setor|departamento|área)\s+[eé]\s+(?:o|a)?\s*(.+)/i,
+      /(?:onde|em\s+que)\s+(?:setor|departamento)\s+(?:trabalha|fica|está)\s+(?:o|a)?\s*(.+)/i,
+      /(?:fale|conte)\s+(?:sobre|de)\s+(?:o|a)?\s*(.+)/i,
+    ]
+    for (const p of pessoaPatterns) {
+      const m = msg.match(p)
+      if (m) {
+        const nome = m[1].trim().replace(/[?!.,]/g,'')
+        if (nome.length > 2 && !nome.includes('empresa') && !nome.includes('borae')) {
+          const col = findColaborador(nome)
+          if (col) return describeColaborador(col)
+        }
+      }
+    }
+
+    if (/o que é a borae|sobre a borae|sobre a empresa/.test(msg) || (msg.includes('borae') && /empresa|o que/.test(msg)))
+      return 'A **BORAÊ** é uma agência de eventos e promoção cultural comprometida em criar experiências que conectem os jovens às mais diversas expressões culturais.\n\nNosso objetivo é promover o acesso à arte, à música e ao conhecimento, valorizando a diversidade e incentivando a participação ativa da juventude na cena cultural. 🎭'
+
+    if (/missão|missao/.test(msg))
+      return 'A **missão** da BORAÊ é:\n\n*"Trazer para os jovens que tenham pouco interesse, acesso ou oportunidade, variados tipos de entretenimento e educação cultural."*\n\nQueremos democratizar o acesso à cultura! 🎯'
+
+    if (/visão|visao/.test(msg))
+      return 'A **visão** da BORAÊ é:\n\n*"Promover cultura, informação e entretenimento para o maior número possível de jovens de forma educativa e verdadeira."*\n\nQueremos ser referência em promoção cultural jovem no Brasil! 👁️'
+
+    if (/valores|pilares/.test(msg))
+      return 'Os **valores** da BORAÊ são:\n\n🔥 **Paixão pela Cultura**\n🌍 **Valorização da sociedade e diversidade**\n📚 **Educação através da experiência**\n✨ **Transparência e Reconhecimento**'
+
+    if (/diferencial/.test(msg))
+      return 'Os **diferenciais** da BORAÊ:\n\n**1. Comunicação em múltiplas plataformas**\nAtuamos de forma estratégica e integrada nos principais canais digitais e físicos.\n\n**2. Linguagem direcionada aos jovens**\nUtilizamos uma linguagem leve, acessível e atual, conectando ideias com autenticidade. 📱'
+
+    if (/metas|objetivos/.test(msg))
+      return 'As **metas** da BORAÊ em 4 etapas:\n\n**1. 🏢 Criação da Empresa** – Formalizar a estrutura\n**2. 📣 Divulgação** – Promover a marca\n**3. 🚀 Desenvolvimento** – Colocar projetos em prática\n**4. 📊 Medir Resultados** – Avaliar e ajustar estratégias'
+
+    if (/departamentos|setores|áreas|quantos setores/.test(msg))
+      return 'A BORAÊ é dividida em **6 departamentos**:\n\n👥 **Recursos Humanos**\n📢 **Marketing**\n🎉 **Planejamento/Eventos**\n🚀 **Desenvolvimento**\n💻 **Tecnologia da Informação**\n🔍 **Pesquisa**'
+
+    if (/diretores|diretoria|direção/.test(msg))
+      return 'A **Diretoria** da BORAÊ:\n\n1. **Guilherme dos Santos** – Diretor\n2. **Gustavo Sartorelli** – Diretor\n\n**Subdiretoria:**\n1. **Bárbara Ferreira** – Subdiretora\n2. **Stefany Anne Apaza** – Subdiretora'
+
+    if (/subdiretora|vice/.test(msg))
+      return 'As **Subdiretoras** da BORAÊ:\n\n1. **Bárbara Ferreira**\n2. **Stefany Anne Apaza**'
+
+    if (/eventos realizados|quais eventos|eventos feitos|lista de eventos/.test(msg) || (msg.includes('eventos') && !/setor|equipe|quem trabalha/.test(msg))) {
+      let r = 'A BORAÊ já realizou diversos **eventos culturais**:\n\n'
+      eventosRealizados.forEach((e,i) => { r += `**${i+1}. ${e.nome}** (${e.data})\n${e.descricao}\n\n` })
+      return r.trim() + '\n\nCada evento reflete nosso compromisso com a promoção cultural! 🎭'
+    }
+
+    if (/farol santander|farol/.test(msg))
+      return 'O **Farol Santander** foi uma visita cultural ao icônico edifício em São Paulo (2025). 🏛️\n\n• Exposições de arte contemporânea\n• Vista panorâmica da cidade\n• Vivência cultural única'
+
+    if (/setembro amarelo/.test(msg))
+      return 'O **Setembro Amarelo** foi um evento de conscientização sobre saúde mental. 💛\n\n• Jogo interativo de conscientização\n• Dinâmicas de grupo\n• Diálogo sobre bem-estar emocional'
+
+    if (/boraween|halloween/.test(msg))
+      return 'O **Boraween** foi a celebração temática de Halloween da BORAÊ (outubro 2025)! 🎃\n\n• Fantasias criativas da equipe\n• Atividades especiais temáticas\n• Integração e descontração'
+
+    if (/centro cultural|santo amaro/.test(msg))
+      return 'A **Visita ao Centro Cultural Santo Amaro** (2025) proporcionou aos colaboradores contato direto com arte e expressões culturais locais! 🏛️'
+
+    if (/quantos colaboradores|quantas pessoas|total de colaboradores/.test(msg))
+      return 'A BORAÊ conta com **48 colaboradores** entre:\n• 2 Diretores\n• 2 Subdiretoras\n• 6 Departamentos'
+
+    // Equipes por setor
+    const equipes = [
+      { test: /marketing/, dep: 'Marketing', emoji: '📢', desc: 'o coração da comunicação, criando campanhas estratégicas e inovadoras!' },
+      { test: /\bti\b|tecnologia da informação/, dep: 'Tecnologia da Informação', emoji: '💻', desc: 'responsável por impulsionar inovação e eficiência digital!' },
+      { test: /\brh\b|recursos humanos/, dep: 'Recursos Humanos', emoji: '👥', desc: 'responsável por atrair, desenvolver e cuidar dos talentos!' },
+      { test: /desenvolvimento/, dep: 'Desenvolvimento', emoji: '🚀', desc: 'o núcleo estratégico para expandir o impacto da organização!' },
+      { test: /planejamento|eventos.*quem trabalha/, dep: 'Planejamento/Eventos', emoji: '🎉', desc: 'responsável por organizar e estruturar todas as ações!' },
+      { test: /pesquisa/, dep: 'Pesquisa', emoji: '🔍', desc: 'investiga comportamentos e interesses da juventude!' },
+    ]
+    for (const eq of equipes) {
+      if (eq.test.test(msg) && /quem trabalha|equipe/.test(msg)) {
+        const team = colaboradores.filter(c => c.departamento === eq.dep)
+        return `A equipe de **${eq.dep}** da BORAÊ:\n\n${team.map(c=>`• ${c.nome}`).join('\n')}\n\n${eq.emoji} O setor é ${eq.desc}`
+      }
+    }
+
+    if (/endereço|endereco|onde fica|localização|local/.test(msg))
+      return 'A **BORAÊ** está localizada em:\n\n📍 **Rua Alexandre Dumas, 2016**\nFaculdade São Judas, 1º andar – Sala 101\nSão Paulo – SP'
+
+    if (/contato|falar com|instagram|redes sociais|como entrar/.test(msg))
+      return 'Entre em contato com a BORAÊ:\n\n📸 **Instagram:** @_boraee\n\nNas nossas redes você encontra todas as novidades e eventos! 🚀'
+
+    if (/^(oi|olá|ola|hey|eai|bom dia|boa tarde|boa noite|hello|hi)$/i.test(msg))
+      return 'Olá! 👋 Sou o **BORUS**, assistente virtual da BORAÊ. Como posso ajudar?\n\nVocê pode perguntar sobre:\n• Nossa empresa e história\n• Departamentos e equipes\n• Eventos realizados\n• Colaboradores específicos'
+
+    if (/^(obrigado|obrigada|valeu|thanks|brigado|brigada)$/i.test(msg))
+      return 'Por nada! 😊 Se tiver mais dúvidas sobre a BORAÊ, é só perguntar!'
+
+    // Busca genérica por colaborador
+    const col = findColaborador(msg)
+    if (col) return describeColaborador(col)
+
+    return 'Desculpe, não encontrei informações específicas sobre isso. 🤔\n\nPosso ajudar com:\n• Informações sobre a empresa\n• Departamentos e funções\n• Colaboradores específicos\n• Eventos realizados\n• Localização e contato\n\nTente reformular sua pergunta!'
+  }
+
+  function describeColaborador(col) {
+    if (col.cargo === 'Diretor') return `**${col.nome}** é um dos **Diretores** da BORAÊ, fazendo parte da liderança estratégica responsável pelas decisões e direcionamento da empresa.`
+    if (col.cargo === 'Subdiretora') return `**${col.nome}** faz parte da **Subdiretoria** da BORAÊ, auxiliando na gestão e coordenação das atividades da empresa junto aos diretores.`
+    return `**${col.nome}** faz parte da equipe de **${col.departamento}** da BORAÊ, contribuindo ativamente para os projetos e atividades do setor.`
+  }
+
+  // ─── Markdown formatter ────────────────────────────────────────
+  function formatContent(content) {
+    return content.split('\n').map(line => {
+      const html = line
+        .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold">$1</strong>')
+        .replace(/\*(.+?)\*/g,     '<em class="italic">$1</em>')
+      return `<span class="block">${html || '&nbsp;'}</span>`
+    }).join('')
+  }
+
+  // ─── Render messages ──────────────────────────────────────────
+  function renderMessages() {
+    const container = document.getElementById('borus-messages')
+    container.innerHTML = messages.map(m => renderMessage(m)).join('')
+    if (isTyping) container.innerHTML += renderTyping()
+    container.scrollTop = container.scrollHeight
+    lucide.createIcons({ nodes: Array.from(container.querySelectorAll('[data-lucide]')) })
+  }
+
+  function renderMessage(m) {
+    const isUser = m.role === 'user'
+    const feedbackSection = (!isUser && m.id !== 'welcome') ? `
+      <div class="flex items-center gap-2 mt-3 pt-2 border-t border-slate-100">
+        <button onclick="handleFeedback('${m.id}', true)"
+          class="p-1.5 rounded-full transition-colors ${feedbackGiven.has(m.id) ? 'bg-green-100 text-green-600' : 'hover:bg-slate-100 text-slate-400'}"
+          ${feedbackGiven.has(m.id)?'disabled':''}>
+          <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
+        </button>
+        <button onclick="handleFeedback('${m.id}', false)"
+          class="p-1.5 rounded-full transition-colors ${feedbackGiven.has(m.id) ? 'bg-red-100 text-red-600' : 'hover:bg-slate-100 text-slate-400'}"
+          ${feedbackGiven.has(m.id)?'disabled':''}>
+          <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i>
+        </button>
+        <button onclick="handleCopy('${m.id}')"
+          class="p-1.5 rounded-full hover:bg-slate-100 text-slate-400 transition-colors ml-auto" id="copy-btn-${m.id}">
+          <i data-lucide="${copiedId===m.id?'check':'copy'}" class="w-3.5 h-3.5 ${copiedId===m.id?'text-green-600':''}"></i>
+        </button>
+      </div>` : ''
+
+    return `
+      <div class="flex ${isUser?'justify-end':'justify-start'} msg-in">
+        <div class="max-w-[85%] rounded-2xl px-4 py-3 ${isUser
+          ? 'bg-slate-700 text-white rounded-br-md'
+          : 'bg-white border border-slate-200 text-slate-700 rounded-bl-md shadow-sm'}">
+          <div class="text-sm leading-relaxed">${formatContent(m.content)}</div>
+          ${feedbackSection}
+        </div>
+      </div>`
+  }
+
+  function renderTyping() {
+    return `
+      <div class="flex justify-start msg-in">
+        <div class="bg-white border border-slate-200 rounded-2xl rounded-bl-md px-4 py-3 shadow-sm">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 bg-slate-400 rounded-full dot1"></span>
+            <span class="w-2 h-2 bg-slate-400 rounded-full dot2"></span>
+            <span class="w-2 h-2 bg-slate-400 rounded-full dot3"></span>
+          </div>
+        </div>
+      </div>`
+  }
+
+  function renderSuggestions() {
+    const container = document.getElementById('borus-suggestions')
+    container.innerHTML = suggestionPools[currentPool].map((s, i) => `
+      <button onclick="handleSuggestion(${JSON.stringify(s)})"
+        class="chip-in text-xs px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full transition-colors whitespace-nowrap"
+        style="animation-delay:${i*0.05}s">
+        ${s}
+      </button>`).join('')
+  }
+
+  // ─── Actions ──────────────────────────────────────────────────
+  function sendMessage(text) {
+    if (!text.trim() || isTyping) return
+    messages.push({ id: Date.now().toString(), role: 'user', content: text.trim(), timestamp: new Date() })
+    document.getElementById('borus-input').value = ''
+    isTyping = true
+    renderMessages()
+
+    setTimeout(() => {
+      const response = generateResponse(text)
+      messages.push({ id: (Date.now()+1).toString(), role: 'assistant', content: response, timestamp: new Date() })
+      isTyping = false
+      currentPool = (currentPool + 1) % suggestionPools.length
+      renderMessages()
+      renderSuggestions()
+    }, 800 + Math.random() * 700)
+  }
+
+  function handleSuggestion(suggestion) { sendMessage(suggestion) }
+
+  function handleFeedback(id, helpful) {
+    feedbackGiven.add(id)
+    renderMessages()
+  }
+
+  function handleCopy(id) {
+    const m = messages.find(m => m.id === id)
+    if (!m) return
+    navigator.clipboard.writeText(m.content).catch(()=>{})
+    copiedId = id
+    renderMessages()
+    setTimeout(() => { copiedId = null; renderMessages() }, 2000)
+  }
+
+  // ─── BORUS popup toggle ────────────────────────────────────────
+  const popup  = document.getElementById('borus-popup')
+
+  document.getElementById('borus-toggle').addEventListener('click', () => {
+    borusOpen = !borusOpen
+    popup.classList.toggle('open', borusOpen)
+    if (borusOpen) { renderMessages(); renderSuggestions() }
+  })
+
+  document.getElementById('borus-close').addEventListener('click', () => {
+    borusOpen = false
+    popup.classList.remove('open')
+  })
+
+  document.getElementById('borus-expand').addEventListener('click', () => {
+    borusExpanded = !borusExpanded
+    popup.classList.toggle('expanded', borusExpanded)
+    const icon = document.getElementById('expand-icon')
+    icon.setAttribute('data-lucide', borusExpanded ? 'minimize-2' : 'expand')
+    lucide.createIcons({ nodes: [icon] })
+  })
+
+  document.getElementById('borus-send').addEventListener('click', () => {
+    sendMessage(document.getElementById('borus-input').value)
+  })
+
+  document.getElementById('borus-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(e.target.value) }
+  })
+
+  // ─── Init ─────────────────────────────────────────────────────
+  lucide.createIcons()
+  </script>
+</body>
+</html>
+
