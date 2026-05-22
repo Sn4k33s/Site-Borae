@@ -6,6 +6,7 @@
     <title>Dashboard - BORAÊ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/global-styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
@@ -34,7 +35,7 @@
                     <a href="../organograma/organograma.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
                         <i class="fas fa-users w-4 h-4 mr-2"></i>Organograma
                     </a>
-                    <a href="../dashboard/dashboard.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white bg-white/15 transition-all">
+                    <a href="../dashboard/dashboard.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-blue-600 bg-blue-50 transition-all">
                         <i class="fas fa-chart-line w-4 h-4 mr-2"></i>Dashboard
                     </a>
                     <a href="../eventos/eventos.html" class="flex items-center px-3 py-1.5 rounded-md text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-all">
@@ -66,7 +67,7 @@
          - Fixed position at top-16 (below header)
          - Toggle with toggleMenu() function
          ============================================================ -->
-    <div id="mobile-menu" class="lg:hidden bg-white border-b border-slate-200 fixed w-full z-40 top-16 hidden">
+    <div id="mobile-menu" class="lg:hidden bg-white border-b border-slate-200 fixed w-full z-40 top-16">
         <div class="px-4 pt-2 pb-4 space-y-1">
             <a href="../index.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
                 <i class="fas fa-home w-4 h-4 mr-2"></i>Início
@@ -74,7 +75,7 @@
             <a href="../organograma/organograma.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
                 <i class="fas fa-users w-4 h-4 mr-2"></i>Organograma
             </a>
-            <a href="../dashboard/dashboard.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-white bg-white/15" onclick="toggleMenu()">
+            <a href="../dashboard/dashboard.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-blue-600 bg-blue-50" onclick="toggleMenu()">
                 <i class="fas fa-chart-line w-4 h-4 mr-2"></i>Dashboard
             </a>
             <a href="../eventos/eventos.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50" onclick="toggleMenu()">
@@ -383,7 +384,7 @@
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
-            menu.classList.toggle('hidden');
+            menu.classList.toggle('open');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
         }
